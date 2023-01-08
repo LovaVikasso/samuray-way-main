@@ -5,7 +5,7 @@ type MusicType = {}
 const Music = (props: MusicType) => {
     return (
         <div>
-            Music
+            Music to listen
         </div>
     )
 }

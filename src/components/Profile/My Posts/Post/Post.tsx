@@ -5,7 +5,7 @@ export type PostType = {
     message: string
     likesCount:number
 }
-const Post = (props:PostType) => { //приходят пропсы типа посттайп
+const Post: React.FC<PostType> = (props) => { //приходят пропсы типа посттайп
   return (
         <div>
             <div className={s.item}>
