@@ -1,0 +1,20 @@
+import React from "react";
+import s from './Post.module.css'
+
+export type PostType = {
+    message: string
+    likesCount:number
+}
+const Post = (props:PostType) => { //приходят пропсы типа посттайп
+  return (
+        <div>
+            <div className={s.item}>
+                <img src='https://thebiggest.ru/wp-content/uploads/2018/01/large-flowers.jpg' alt=''/>
+                {props.message} {/*а там где используем пост используем атрибуты мэсседж*/}
+            </div>
+            <div><span>Like {props.likesCount}</span></div>
+
+        </div>
+    )
+}
+export default Post
