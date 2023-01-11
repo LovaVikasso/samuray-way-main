@@ -1,9 +1,9 @@
 .header {
     grid-area: header;
     background-color: orchid;
-}
-
-.header img {
-    width: 20px;
-    height: 20px;
+    color:white;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px;
+    text-align: center;
+    font-size: 30px;
 }
