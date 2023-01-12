@@ -1,11 +1,11 @@
 
-export type PostsType = {
+export type PostType = {
     id: number,
     message: string,
     likesCount: number
 }
 export type ProfilePageType = {
-    posts: Array<PostsType>
+    posts: Array<PostType>
 }
 type DialogDataType = {
     id: number, name: string
@@ -47,6 +47,22 @@ let state: RootStateType = {
             {id: 3, text: 'Would you be so kindly'},
             {id: 4, text: 'Yo'}
         ]
-    }
+    },
+    // friendsPage: {
+    //     friends: [
+    //         {id: 1, name: 'Anna'},
+    //         {id: 2, name: 'Tatyana'},
+    //         {id: 3, name: 'Svetlana'}
+    //     ],
+    // },
+}
+
+export let addPost = (postMessage:string) =>{ //приходят пост типа строка
+let newPost:PostType = { //новый посто формата PostsType
+    id:5,
+    message:postMessage,
+    likesCount:0
+};
+    state.profilePage.posts.push(newPost)
 }
 export default state

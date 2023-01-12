@@ -13,6 +13,7 @@ import {RootStateType} from "./redux/state";
 
 type AppProps={
     addState:RootStateType
+    addPostCallBack:(postMessage:string)=>void
 }
 const App = (props: AppProps) => {
 
@@ -27,6 +28,7 @@ const App = (props: AppProps) => {
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>
+                    {/*<Route path='/friends' render={() => <Friends/>}/>*/}
                 </div>
             </div>
         </BrowserRouter>
