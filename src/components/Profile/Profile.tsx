@@ -2,14 +2,21 @@ import React from "react";
 import s from './Profile.module.css'
 import MyPosts from "./My Posts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {ProfilePageType} from "../../redux/state";
+import {PostType} from "../../redux/state";
 
-const Profile = (props:ProfilePageType) => {
+type ProfilePropsType = {
+    posts:Array<PostType>
+    addPost:(postMessage:string)=>void
+}
+//const Profile = (props:ProfilePageType) => { старая типизация
+const Profile: React.FC<ProfilePropsType> = (props) => {
 
     return (
+
         <div className={s.content}>
+            {/*{props.addPost("Hello again from Profile.Props")} проверяю что все дошло как надо*/}
             <ProfileInfo />
-            <MyPosts posts={props.posts}/>
+            <MyPosts posts={props.posts} addPost={props.addPost} />
         </div>
     )
 }

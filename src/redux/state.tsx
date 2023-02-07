@@ -6,6 +6,7 @@ export type PostType = {
 }
 export type ProfilePageType = {
     posts: Array<PostType>
+   // postMessage:string
 }
 type DialogDataType = {
     id: number, name: string
@@ -32,6 +33,7 @@ let state: RootStateType = {
             {id: 3, message: 'Nice to see you again', likesCount: 10},
             {id: 4, message: 'YO', likesCount: 7}
         ],
+        //postMessage:''
     },
     dialogsPage: {
         dialogs: [
@@ -59,7 +61,7 @@ let state: RootStateType = {
 
 export let addPost = (postMessage:string) =>{ //приходят пост типа строка
 let newPost:PostType = { //новый посто формата PostsType
-    id:5,
+    id:state.profilePage.posts.length+1,
     message:postMessage,
     likesCount:0
 };

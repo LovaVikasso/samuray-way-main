@@ -4,9 +4,9 @@ import './index.css';
 import App from './App';
 import state, {addPost} from "./redux/state";
 
-// addPost("Hello there")
+//addPost("Hello there")
 
 ReactDOM.render(
-    <App addState={state} addPostCallBack={addPost}/>,
+    <App addState={state} addPost={addPost}/>,
     document.getElementById('root')
 );
