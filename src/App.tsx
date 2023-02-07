@@ -8,12 +8,13 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {RootStateType} from "./redux/state";
+import state, {RootStateType, updateNewPostText} from "./redux/state";
 
 
 type AppProps={
     addState:RootStateType
     addPost:(postMessage:string)=>void
+    updateNewPostText: (newText:string)=>void
 }
 //addPost("from App again") проверяю что все дошло как надо
 const App:React.FC<AppProps> = (props) => {
@@ -25,7 +26,7 @@ const App:React.FC<AppProps> = (props) => {
                 <Header/>
                 <Nav/>
                 <div className="app-wrapper-content">
-                    <Route path='/profile' render={() => <Profile posts={props.addState.profilePage.posts} addPost={props.addPost}/>}/>
+                    <Route path='/profile' render={() => <Profile posts={props.addState.profilePage.posts} addPost={props.addPost} updateNewPostText={props.updateNewPostText} message={state.profilePage.newPostMessage} />}/>
                     <Route path='/dialogs' render={() => <Dialogs dialogs={props.addState.dialogsPage.dialogs} messages={props.addState.dialogsPage.messages}/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>

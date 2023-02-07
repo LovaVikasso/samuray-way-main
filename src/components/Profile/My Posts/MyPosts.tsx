@@ -1,30 +1,38 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {PostType, ProfilePageType} from "../../../redux/state";
+import {PostType} from "../../../redux/state";
 
 type MyPostPropsType = {
     posts: Array<PostType>
+    message: string
     addPost: (postMessage: string) => void
+    changeNewTextCallBack: (newText: string) => void
+
 }
 //const MyPosts = (props: ProfilePageType) => { старая типизация
 const MyPosts: React.FC<MyPostPropsType> = (props) => {
 
     let postElement = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}/>)
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>();//показываем типизации что мы используем createRef для textarea
+    //let newPostElement = React.createRef<HTMLTextAreaElement>();//показываем типизации что мы используем createRef для textarea
     let addNewPost = () => {
-        if (newPostElement.current) {
-            props.addPost(newPostElement.current.value)
-            newPostElement.current.value = "" //очищаем после ввода поле
-        } //если ссылка (ref) существует, то value
+        props.addPost(props.message)
+        // if (newPostElement.current) {
+        //     props.addPost(newPostElement.current.value)
+        //     newPostElement.current.value = "" //очищаем после ввода поле
+        // } //если ссылка (ref) существует, то value
+    }
 
+    const onNewTextChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
+        props.changeNewTextCallBack(e.currentTarget.value)
     }
     return (
         <div className={s.postsBlock}>
             {/*{props.addPost("Hello again from MyPosts.Props")} проверяю что все дошло как надо*/}
             <div className={s.postBlock}>New post</div>
-            <div className={s.postBlock}><textarea ref={newPostElement}></textarea></div>
+            {/*<div className={s.postBlock}><textarea ref={newPostElement} onChange={onChangeHandler} value={props.message}/></div> старый код с рефом*/}
+            <div className={s.postBlock}><textarea onChange={onNewTextChangeHandler} value={props.message}/></div>
             <div className={s.postBlock}>
                 <button onClick={addNewPost}>Add post</button>
             </div>

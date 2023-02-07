@@ -7,7 +7,7 @@ export type PostType = {
 }
 export type ProfilePageType = {
     posts: Array<PostType>
-   // postMessage:string
+    newPostMessage:string
 }
 type DialogDataType = {
     id: number, name: string
@@ -34,7 +34,7 @@ let state: RootStateType = {
             {id: 3, message: 'Nice to see you again', likesCount: 10},
             {id: 4, message: 'YO', likesCount: 7}
         ],
-        //postMessage:''
+        newPostMessage:'default'
     },
     dialogsPage: {
         dialogs: [
@@ -67,6 +67,11 @@ let newPost:PostType = { //новый посто формата PostsType
     likesCount:0
 };
     state.profilePage.posts.push(newPost)
+    renderTree(state)
+}
+
+export let updateNewPostText = (message:string) =>{ //изменяем текст сообщения в поле ввода
+    state.profilePage.newPostMessage = message
     renderTree(state)
 }
 
