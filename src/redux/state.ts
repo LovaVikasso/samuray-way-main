@@ -1,3 +1,4 @@
+import {renderTree} from "../render";
 
 export type PostType = {
     id: number,
@@ -66,5 +67,9 @@ let newPost:PostType = { //новый посто формата PostsType
     likesCount:0
 };
     state.profilePage.posts.push(newPost)
+    renderTree(state)
 }
+
+
+
 export default state

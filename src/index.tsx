@@ -1,12 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import state, {addPost} from "./redux/state";
+import state from "./redux/state";
+import {renderTree} from "./render";
 
-//addPost("Hello there")
-
-ReactDOM.render(
-    <App addState={state} addPost={addPost}/>,
-    document.getElementById('root')
-);
+renderTree(state) //вызываем рендер при запуске приложения

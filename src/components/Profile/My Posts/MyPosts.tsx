@@ -4,19 +4,21 @@ import Post from "./Post/Post";
 import {PostType, ProfilePageType} from "../../../redux/state";
 
 type MyPostPropsType = {
-    posts:Array<PostType>
-    addPost:(postMessage:string)=>void
+    posts: Array<PostType>
+    addPost: (postMessage: string) => void
 }
 //const MyPosts = (props: ProfilePageType) => { старая типизация
-const MyPosts:React.FC<MyPostPropsType> = (props) => {
+const MyPosts: React.FC<MyPostPropsType> = (props) => {
 
-    let postElement = props.posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount}/>)
+    let postElement = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();//показываем типизации что мы используем createRef для textarea
     let addNewPost = () => {
         if (newPostElement.current) {
-       props.addPost(newPostElement.current.value)
+            props.addPost(newPostElement.current.value)
+            newPostElement.current.value = "" //очищаем после ввода поле
         } //если ссылка (ref) существует, то value
+
     }
     return (
         <div className={s.postsBlock}>
