@@ -18,9 +18,9 @@ const MyPosts: React.FC<MyPostPropsType> = (props) => {
     //let newPostElement = React.createRef<HTMLTextAreaElement>();//показываем типизации что мы используем createRef для textarea
     let addNewPost = () => {
         props.addPost(props.message)
+
         // if (newPostElement.current) {
         //     props.addPost(newPostElement.current.value)
-        //     newPostElement.current.value = "" //очищаем после ввода поле
         // } //если ссылка (ref) существует, то value
     }
 

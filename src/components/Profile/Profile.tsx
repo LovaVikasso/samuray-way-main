@@ -10,13 +10,11 @@ type ProfilePropsType = {
     message:string
     updateNewPostText:(newText:string)=>void
 }
-//const Profile = (props:ProfilePageType) => { старая типизация
 const Profile: React.FC<ProfilePropsType> = (props) => {
 
     return (
 
         <div className={s.content}>
-            {/*{props.addPost("Hello again from Profile.Props")} проверяю что все дошло как надо*/}
             <ProfileInfo />
             <MyPosts posts={props.posts} addPost={props.addPost} message={props.message} changeNewTextCallBack={props.updateNewPostText}/>
         </div>

@@ -1,6 +1,8 @@
 import React from 'react';
 import './index.css';
-import state from "./redux/state";
+import store from "./redux/state";
 import {renderTree} from "./render";
 
-renderTree(state) //вызываем рендер при запуске приложения
+
+renderTree() //вызываем рендер при запуске приложения
+store.subscribe(renderTree) //окгда меняется state вызываем перерисовку

@@ -1,15 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import {addPost, RootStateType, updateNewPostText} from "./redux/state";
+import ReactDOM from "react-dom";
+import App from "./App";
+import store from "./redux/state";
 
-
-export const renderTree = (state:RootStateType) => {
+export const renderTree = () => {
     ReactDOM.render(
-        <App addState={state} addPost={addPost} updateNewPostText={updateNewPostText}/>,
+        <App addState={store.getState()} addPost={store.addPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)}/>,
         document.getElementById('root')
     );
 }
-//функция для отрисовки приложения, вынесли для переиспользования в state и index.tsx
-
+//bind используем всегда если в в методе используется this. в скобках пишем объект в котором берем этот метод

@@ -8,7 +8,7 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import state, {RootStateType, updateNewPostText} from "./redux/state";
+import {RootStateType} from "./redux/state";
 
 
 type AppProps={
@@ -20,13 +20,15 @@ type AppProps={
 const App:React.FC<AppProps> = (props) => {
 
     return (
+
         <BrowserRouter>
+
             <div className="app-wrapper">
                 {/*{props.addPost("Hello again from App.Props")} проверяю что все дошло как надо*/}
                 <Header/>
                 <Nav/>
                 <div className="app-wrapper-content">
-                    <Route path='/profile' render={() => <Profile posts={props.addState.profilePage.posts} addPost={props.addPost} updateNewPostText={props.updateNewPostText} message={state.profilePage.newPostMessage} />}/>
+                    <Route path='/profile' render={() => <Profile posts={props.addState.profilePage.posts} addPost={props.addPost} updateNewPostText={props.updateNewPostText} message={props.addState.profilePage.newPostMessage} />}/>
                     <Route path='/dialogs' render={() => <Dialogs dialogs={props.addState.dialogsPage.dialogs} messages={props.addState.dialogsPage.messages}/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
