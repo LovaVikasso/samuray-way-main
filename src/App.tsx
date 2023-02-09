@@ -8,16 +8,17 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {RootStateType} from "./redux/state";
+import {RootStateType, TsarType} from "./redux/state";
 
 
-type AppProps={
-    addState:RootStateType
-    addPost:(postMessage:string)=>void
-    updateNewPostText: (newText:string)=>void
+type AppProps = {
+    addState: RootStateType
+    dispatch: (action: TsarType) => void
+    // addPost:(postMessage:string)=>void
+    // updateNewPostText: (newText:string)=>void
 }
 //addPost("from App again") проверяю что все дошло как надо
-const App:React.FC<AppProps> = (props) => {
+const App: React.FC<AppProps> = (props) => {
 
     return (
 
@@ -28,8 +29,12 @@ const App:React.FC<AppProps> = (props) => {
                 <Header/>
                 <Nav/>
                 <div className="app-wrapper-content">
-                    <Route path='/profile' render={() => <Profile posts={props.addState.profilePage.posts} addPost={props.addPost} updateNewPostText={props.updateNewPostText} message={props.addState.profilePage.newPostMessage} />}/>
-                    <Route path='/dialogs' render={() => <Dialogs dialogs={props.addState.dialogsPage.dialogs} messages={props.addState.dialogsPage.messages}/>}/>
+                    <Route path='/profile' render={() => <Profile posts={props.addState.profilePage.posts}
+                                                                  message={props.addState.profilePage.newPostMessage}
+                                                                  dispatch={props.dispatch}/>}/>
+                    {/*<Route path='/profile' render={() => <Profile posts={props.addState.profilePage.posts} addPost={props.addPost} updateNewPostText={props.updateNewPostText} message={props.addState.profilePage.newPostMessage} />}/>*/}
+                    <Route path='/dialogs' render={() => <Dialogs dialogs={props.addState.dialogsPage.dialogs}
+                                                                  messages={props.addState.dialogsPage.messages}/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>

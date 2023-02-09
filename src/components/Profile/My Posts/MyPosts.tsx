@@ -1,14 +1,14 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {PostType} from "../../../redux/state";
+import {PostType, TsarType} from "../../../redux/state";
 
 type MyPostPropsType = {
     posts: Array<PostType>
     message: string
-    addPost: (postMessage: string) => void
-    changeNewTextCallBack: (newText: string) => void
-
+    // addPost: (postMessage: string) => void
+    // changeNewTextCallBack: (newText: string) => void
+    dispatch: (action: TsarType) => void
 }
 //const MyPosts = (props: ProfilePageType) => { старая типизация
 const MyPosts: React.FC<MyPostPropsType> = (props) => {
@@ -17,15 +17,16 @@ const MyPosts: React.FC<MyPostPropsType> = (props) => {
 
     //let newPostElement = React.createRef<HTMLTextAreaElement>();//показываем типизации что мы используем createRef для textarea
     let addNewPost = () => {
-        props.addPost(props.message)
-
+        props.dispatch({type:'ADD-POST', postMessage:props.message})
+        // props.addPost(props.message)
         // if (newPostElement.current) {
         //     props.addPost(newPostElement.current.value)
         // } //если ссылка (ref) существует, то value
     }
 
     const onNewTextChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        props.changeNewTextCallBack(e.currentTarget.value)
+     props.dispatch({type:'UPDATE-NEW-POST-TEXT', message:e.currentTarget.value})
+        // props.changeNewTextCallBack(e.currentTarget.value)
     }
     return (
         <div className={s.postsBlock}>

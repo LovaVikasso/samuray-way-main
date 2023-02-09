@@ -26,11 +26,21 @@ export type StoreType = {
     _state: RootStateType
     _onChange: () => void
     getState: () => RootStateType
-    addPost: (postMessage: string) => void
-    updateNewPostText: (message: string) => void
+    // addPost: (postMessage: string) => void
+    // updateNewPostText: (message: string) => void
     subscribe: (observer: () => void) => void
-    dispatch:()=>void
+    dispatch: (action: TsarType) => void
 }
+type AddPostActionType = {
+    type: 'ADD-POST'
+    postMessage:string
+}
+type UpdateNewPostActonType = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    message:string
+}
+export type TsarType = AddPostActionType | UpdateNewPostActonType
+
 let store: StoreType = {
     _state: {
         profilePage: {
@@ -64,26 +74,37 @@ let store: StoreType = {
     _onChange() {
         console.log("state changed")
     },
-    addPost(postMessage: string) { //приходят пост типа строка
-        let newPost: PostType = { //новый посто формата PostsType
-            //id: this._state.profilePage.posts.length + 1,
-            id: 6,
-            message: postMessage,
-            likesCount: 0
-        };
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostMessage = ""
-        this._onChange()
-    },
-    updateNewPostText(message: string) { //изменяем текст сообщения в поле ввода
-        this._state.profilePage.newPostMessage = message
-        this._onChange()
-    },
+    // addPost(postMessage: string) { //приходят пост типа строка
+    //     let newPost: PostType = { //новый посто формата PostsType
+    //         id: this._state.profilePage.posts.length + 1,
+    //         message: postMessage,
+    //         likesCount: 0
+    //     };
+    //     this._state.profilePage.posts.push(newPost)
+    //     this._state.profilePage.newPostMessage = ""
+    //     this._onChange()
+    // },
+    // updateNewPostText(message: string) { //изменяем текст сообщения в поле ввода
+    //     this._state.profilePage.newPostMessage = message
+    //     this._onChange()
+    // },
     subscribe(observer) {
         this._onChange = observer
     },
-    dispatch(){
-
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let newPost: PostType = { //новый посто формата PostsType
+                id: this._state.profilePage.posts.length + 1,
+                message: action.postMessage,
+                likesCount: 0
+            };
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostMessage = ""
+            this._onChange()
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostMessage = action.message
+            this._onChange()
+        }
     }
 }
 
