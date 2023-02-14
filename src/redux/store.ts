@@ -1,3 +1,6 @@
+import {profileReducer} from "./profile-reducer";
+import {dialogsReducer} from "./dialogs-reducer";
+
 export type PostType = {
     id: number,
     message: string,
@@ -14,7 +17,7 @@ type MessageDataType = {
     id: number,
     text: string
 }
-type DialogsPageType = {
+export type DialogsPageType = {
     dialogs: Array<DialogDataType>,
     messages: Array<MessageDataType>,
     newMessage: string
@@ -32,6 +35,10 @@ export type StoreType = {
     subscribe: (observer: () => void) => void
     dispatch: (action: TsarType) => void
 }
+// const ADD_POST = 'ADD-POST'
+// const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+// const SEND_MESSAGE = 'SEND-MESSAGE'
+// const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 type AddPostActionType = {
     type: 'ADD-POST'
     postMessage: string
@@ -41,13 +48,14 @@ type UpdateNewPostActonType = {
     message: string
 }
 type AddMessageActionType = {
-    type: 'ADD-MESSAGE'
+    type: 'SEND-MESSAGE'
     textMessage: string
 }
 type UpdateNewMessageActonType = {
     type: 'UPDATE-NEW-MESSAGE-TEXT'
     newTextMessage: string
 }
+
 export type TsarType = AddPostActionType | UpdateNewPostActonType | AddMessageActionType | UpdateNewMessageActonType
 
 let store: StoreType = {
@@ -101,31 +109,34 @@ let store: StoreType = {
         this._onChange = observer
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            let newPost: PostType = { //новый посто формата PostsType
-                id: this._state.profilePage.posts.length + 1,
-                message: action.postMessage,
-                likesCount: 0
-            };
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostMessage = ""
-            this._onChange()
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostMessage = action.message
-            this._onChange()
-        } else if (action.type === 'ADD-MESSAGE') {
-            let newMessage: MessageDataType = {
-                id: this._state.dialogsPage.messages.length + 1,
-                text: action.textMessage
-            };
-            this._state.dialogsPage.messages.push(newMessage)
-            this._state.dialogsPage.newMessage = ""
-            this._onChange()
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessage = action.newTextMessage
-            this._onChange()
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._onChange()
 
-        }
+        // if (action.type === 'ADD-POST') {
+        //     let newPost: PostType = { //новый посто формата PostsType
+        //         id: this._state.profilePage.posts.length + 1,
+        //         message: action.postMessage,
+        //         likesCount: 0
+        //     };
+        //     this._state.profilePage.posts.push(newPost)
+        //     this._state.profilePage.newPostMessage = ""
+        //     this._onChange()
+        // } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        //     this._state.profilePage.newPostMessage = action.message
+        //     this._onChange()
+        // } else if (action.type === 'SEND-MESSAGE') {
+        //     let newMessage: MessageDataType = {
+        //         id: this._state.dialogsPage.messages.length + 1,
+        //         text: action.textMessage
+        //     };
+        //     this._state.dialogsPage.messages.push(newMessage)
+        //     this._state.dialogsPage.newMessage = ""
+        //     this._onChange()
+        // } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+        //     this._state.dialogsPage.newMessage = action.newTextMessage
+        //     this._onChange()
+        // } СТАРЬЕ
     }
 }
 

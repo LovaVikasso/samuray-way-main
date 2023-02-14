@@ -2,12 +2,15 @@ import React from 'react';
 import './index.css';
 import ReactDOM from "react-dom";
 import App from "./App";
-import store from "./redux/state";
+import store from "./redux/store";
+import {BrowserRouter} from "react-router-dom";
 
 export const renderTree = () => {
     ReactDOM.render(
-        // <App addState={store.getState()} addPost={store.addPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)}/>,
-        <App addState={store.getState()} dispatch={store.dispatch.bind(store)}/>,
+        <BrowserRouter>
+        {/*// <App addState={store.getState()} addPost={store.addPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)}/>,*/}
+        <App addState={store.getState()} dispatch={store.dispatch.bind(store)}/>
+        </BrowserRouter>,
         document.getElementById('root')
     );
 }

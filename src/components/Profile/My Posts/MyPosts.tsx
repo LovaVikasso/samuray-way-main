@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {PostType, TsarType} from "../../../redux/state";
+import {PostType, TsarType} from "../../../redux/store";
+import post from "./Post/Post";
 
 type MyPostPropsType = {
     posts: Array<PostType>
@@ -12,18 +13,7 @@ type MyPostPropsType = {
 }
 //const MyPosts = (props: ProfilePageType) => { старая типизация
 
-const AddPostAC = () => {
-    return {
-        type: 'ADD-POST',
-       // postMessage:string
-    }
-}
-const UpdateNewPostAC = () => {
-    return {
-        type: 'UPDATE-NEW-POST-TEXT',
-        // postMessage:string
-    }
-}
+
 const MyPosts: React.FC<MyPostPropsType> = (props) => {
 
     let postElement = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}/>)
@@ -44,7 +34,7 @@ const MyPosts: React.FC<MyPostPropsType> = (props) => {
     return (
         <div className={s.postsBlock}>
             <div className={s.postBlock}>New post</div>
-            <div className={s.postBlock}><textarea onChange={onNewTextChangeHandler} value={props.message}/></div>
+            <div className={s.postBlock}><textarea onChange={onNewTextChangeHandler} value={props.message} placeholder="Напиши сюда текст нового поста"/></div>
             <div className={s.postBlock}>
                 <button onClick={addNewPost}>Add post</button>
             </div>

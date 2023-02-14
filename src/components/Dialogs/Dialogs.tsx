@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {TsarType} from "../../redux/state";
+import {TsarType} from "../../redux/store";
 
 export type DialogDataType = {
     id: number, name: string
@@ -28,7 +28,7 @@ const Dialogs:React.FC<DialogsType> = (props) => {
     // let newMessageElement = React.createRef<HTMLTextAreaElement>();//потказываем типизации что мы используем createRef для textarea
     let addMessage = () => {
         // alert(newMessageElement.current?.value) //current?.value если ссылка (ref) существует, то value
-        props.dispatch({type:'ADD-MESSAGE', textMessage:props.newMessage})
+        props.dispatch({type:'SEND-MESSAGE', textMessage:props.newMessage})
     }
     let onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>)=>{
         props.dispatch({type:'UPDATE-NEW-MESSAGE-TEXT', newTextMessage:e.currentTarget.value})
@@ -44,8 +44,8 @@ const Dialogs:React.FC<DialogsType> = (props) => {
             </div>
             <div className={s.addForm}>
                 <div>
-                    <textarea onChange={onChangeHandler} value={props.newMessage}></textarea>
-                    <button onClick={addMessage}>Add new message</button>
+                    <textarea onChange={onChangeHandler} value={props.newMessage} placeholder="Введи новое сообщение!"></textarea>
+                    <button onClick={addMessage}>Send message</button>
                 </div>
             </div>
         </div>
