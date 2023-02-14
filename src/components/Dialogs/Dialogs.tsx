@@ -17,24 +17,18 @@ type DialogsType = {
     dispatch: (action: TsarType) => void
     newMessage:string
 }
-
-// const Dialogs = (props: DialogsType) => {
 const Dialogs:React.FC<DialogsType> = (props) => {
 
 
     let dialogsElement = props.dialogs.map((d) => <DialogItem name={d.name} id={d.id}/>)
     let messagesElement = props.messages.map((m) => <Message text={m.text}/>)
-
-    // let newMessageElement = React.createRef<HTMLTextAreaElement>();//потказываем типизации что мы используем createRef для textarea
     let addMessage = () => {
-        // alert(newMessageElement.current?.value) //current?.value если ссылка (ref) существует, то value
         props.dispatch({type:'SEND-MESSAGE', textMessage:props.newMessage})
     }
     let onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>)=>{
         props.dispatch({type:'UPDATE-NEW-MESSAGE-TEXT', newTextMessage:e.currentTarget.value})
     }
     return (
-
         <div className={s.dialogs}>
             <div className={s.dialogItems}>
                 {dialogsElement}

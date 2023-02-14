@@ -14,24 +14,19 @@ import {RootStateType, TsarType} from "./redux/store";
 type AppProps = {
     addState: RootStateType
     dispatch: (action: TsarType) => void
-    // addPost:(postMessage:string)=>void
-    // updateNewPostText: (newText:string)=>void
 }
-//addPost("from App again") проверяю что все дошло как надо
 const App: React.FC<AppProps> = (props) => {
 
     return (
 
         <BrowserRouter>
             <div className="app-wrapper">
-                {/*{props.addPost("Hello again from App.Props")} проверяю что все дошло как надо*/}
                 <Header/>
                 <Nav/>
                 <div className="app-wrapper-content">
                     <Route path='/profile' render={() => <Profile posts={props.addState.profilePage.posts}
                                                                   message={props.addState.profilePage.newPostMessage}
                                                                   dispatch={props.dispatch}/>}/>
-                    {/*<Route path='/profile' render={() => <Profile posts={props.addState.profilePage.posts} addPost={props.addPost} updateNewPostText={props.updateNewPostText} message={props.addState.profilePage.newPostMessage} />}/>*/}
                     <Route path='/dialogs' render={() => <Dialogs dialogs={props.addState.dialogsPage.dialogs}
                                                                   messages={props.addState.dialogsPage.messages}
                                                                   newMessage={props.addState.dialogsPage.newMessage}
