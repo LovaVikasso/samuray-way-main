@@ -11,6 +11,19 @@ type MyPostPropsType = {
     dispatch: (action: TsarType) => void
 }
 //const MyPosts = (props: ProfilePageType) => { старая типизация
+
+const AddPostAC = () => {
+    return {
+        type: 'ADD-POST',
+       // postMessage:string
+    }
+}
+const UpdateNewPostAC = () => {
+    return {
+        type: 'UPDATE-NEW-POST-TEXT',
+        // postMessage:string
+    }
+}
 const MyPosts: React.FC<MyPostPropsType> = (props) => {
 
     let postElement = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}/>)
@@ -30,9 +43,7 @@ const MyPosts: React.FC<MyPostPropsType> = (props) => {
     }
     return (
         <div className={s.postsBlock}>
-            {/*{props.addPost("Hello again from MyPosts.Props")} проверяю что все дошло как надо*/}
             <div className={s.postBlock}>New post</div>
-            {/*<div className={s.postBlock}><textarea ref={newPostElement} onChange={onChangeHandler} value={props.message}/></div> старый код с рефом*/}
             <div className={s.postBlock}><textarea onChange={onNewTextChangeHandler} value={props.message}/></div>
             <div className={s.postBlock}>
                 <button onClick={addNewPost}>Add post</button>

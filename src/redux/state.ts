@@ -16,7 +16,8 @@ type MessageDataType = {
 }
 type DialogsPageType = {
     dialogs: Array<DialogDataType>,
-    messages: Array<MessageDataType>
+    messages: Array<MessageDataType>,
+    newMessage: string
 }
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -33,13 +34,21 @@ export type StoreType = {
 }
 type AddPostActionType = {
     type: 'ADD-POST'
-    postMessage:string
+    postMessage: string
 }
 type UpdateNewPostActonType = {
     type: 'UPDATE-NEW-POST-TEXT'
-    message:string
+    message: string
 }
-export type TsarType = AddPostActionType | UpdateNewPostActonType
+type AddMessageActionType = {
+    type: 'ADD-MESSAGE'
+    textMessage: string
+}
+type UpdateNewMessageActonType = {
+    type: 'UPDATE-NEW-MESSAGE-TEXT'
+    newTextMessage: string
+}
+export type TsarType = AddPostActionType | UpdateNewPostActonType | AddMessageActionType | UpdateNewMessageActonType
 
 let store: StoreType = {
     _state: {
@@ -65,7 +74,7 @@ let store: StoreType = {
                 {id: 2, text: 'Nice to see you again'},
                 {id: 3, text: 'Would you be so kindly'},
                 {id: 4, text: 'Yo'}
-            ]
+            ], newMessage: 'Напиши сюда новое сообщение'
         },
     },
     getState() {
@@ -104,6 +113,18 @@ let store: StoreType = {
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profilePage.newPostMessage = action.message
             this._onChange()
+        } else if (action.type === 'ADD-MESSAGE') {
+            let newMessage: MessageDataType = {
+                id: this._state.dialogsPage.messages.length + 1,
+                text: action.textMessage
+            };
+            this._state.dialogsPage.messages.push(newMessage)
+            this._state.dialogsPage.newMessage = ""
+            this._onChange()
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+            this._state.dialogsPage.newMessage = action.newTextMessage
+            this._onChange()
+
         }
     }
 }

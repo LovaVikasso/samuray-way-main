@@ -34,7 +34,9 @@ const App: React.FC<AppProps> = (props) => {
                                                                   dispatch={props.dispatch}/>}/>
                     {/*<Route path='/profile' render={() => <Profile posts={props.addState.profilePage.posts} addPost={props.addPost} updateNewPostText={props.updateNewPostText} message={props.addState.profilePage.newPostMessage} />}/>*/}
                     <Route path='/dialogs' render={() => <Dialogs dialogs={props.addState.dialogsPage.dialogs}
-                                                                  messages={props.addState.dialogsPage.messages}/>}/>
+                                                                  messages={props.addState.dialogsPage.messages}
+                                                                  newMessage={props.addState.dialogsPage.newMessage}
+                                                                  dispatch={props.dispatch}/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>
