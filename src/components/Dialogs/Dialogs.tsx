@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {TsarType} from "../../redux/store";
+import {AddMessageAC, TsarType, UpdateNewMessageAC} from "../../redux/myStore";
 
 export type DialogDataType = {
     id: number, name: string
@@ -20,13 +20,13 @@ type DialogsType = {
 const Dialogs:React.FC<DialogsType> = (props) => {
 
 
-    let dialogsElement = props.dialogs.map((d) => <DialogItem name={d.name} id={d.id}/>)
-    let messagesElement = props.messages.map((m) => <Message text={m.text}/>)
+    let dialogsElement = props.dialogs.map((d) => <DialogItem key={d.id} name={d.name} id={d.id}/>)
+    let messagesElement = props.messages.map((m) => <Message key={m.id} text={m.text}/>)
     let addMessage = () => {
-        props.dispatch({type:'SEND-MESSAGE', textMessage:props.newMessage})
+        props.dispatch(AddMessageAC(props.newMessage))
     }
     let onChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>)=>{
-        props.dispatch({type:'UPDATE-NEW-MESSAGE-TEXT', newTextMessage:e.currentTarget.value})
+        props.dispatch(UpdateNewMessageAC(e.currentTarget.value))
     }
     return (
         <div className={s.dialogs}>

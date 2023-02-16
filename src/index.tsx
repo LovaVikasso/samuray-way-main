@@ -1,7 +1,7 @@
-import React from 'react';
 import './index.css';
-import store from "./redux/store";
+import myStore from "./redux/myStore";
 import {renderTree} from "./render";
+import {store} from "./redux/redux-store";
 
 
 renderTree() //вызываем рендер при запуске приложения

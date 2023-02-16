@@ -2,7 +2,8 @@ import React from "react";
 import s from './Profile.module.css'
 import MyPosts from "./My Posts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {PostType, TsarType} from "../../redux/store";
+import {PostType, TsarType} from "../../redux/myStore";
+import MyPostsContainer from "./My Posts/MyPostsContainer";
 
 type ProfilePropsType = {
     posts:Array<PostType>
@@ -15,7 +16,7 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
 
         <div className={s.content}>
             <ProfileInfo />
-            <MyPosts posts={props.posts} message={props.message} dispatch={props.dispatch}/>
+            <MyPostsContainer posts={props.posts} message={props.message} dispatch={props.dispatch}/>
         </div>
     )
 }

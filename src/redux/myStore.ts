@@ -34,26 +34,38 @@ export type StoreType = {
     dispatch: (action: TsarType) => void
 }
 
-type AddPostActionType = {
-    type: 'ADD-POST'
-    postMessage: string
-}
-type UpdateNewPostActonType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    message: string
-}
-type AddMessageActionType = {
-    type: 'SEND-MESSAGE'
-    textMessage: string
-}
-type UpdateNewMessageActonType = {
-    type: 'UPDATE-NEW-MESSAGE-TEXT'
-    newTextMessage: string
-}
+type AddPostActionType = ReturnType<typeof AddPostAC>
+type UpdateNewPostActonType = ReturnType<typeof UpdateNewPostAC>
+type AddMessageActionType = ReturnType<typeof AddMessageAC>
+type UpdateNewMessageActonType = ReturnType<typeof UpdateNewMessageAC>
 
 export type TsarType = AddPostActionType | UpdateNewPostActonType | AddMessageActionType | UpdateNewMessageActonType
+export const AddPostAC = (postMessage: string) => {
+    return {
+        type: 'ADD-POST',
+        postMessage
+    } as const
+}
+export const UpdateNewPostAC = (message: string) => {
+    return {
+        type: 'UPDATE-NEW-POST-TEXT',
+        message
+    } as const
+}
+export const AddMessageAC = (textMessage: string) => {
+    return {
+        type: 'SEND-MESSAGE',
+        textMessage
+    } as const
+}
+export const UpdateNewMessageAC = (newTextMessage: string) => {
+    return {
+        type: 'UPDATE-NEW-MESSAGE-TEXT',
+        newTextMessage
+    } as const
+}
 
-let store: StoreType = {
+let myStore: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -95,4 +107,4 @@ let store: StoreType = {
         this._onChange()
     }
 }
-export default store
+export default myStore

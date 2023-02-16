@@ -1,22 +1,31 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {PostType, TsarType} from "../../../redux/store";
-import post from "./Post/Post";
+import {AddPostAC, PostType, TsarType, UpdateNewPostAC} from "../../../redux/myStore";
+
 
 type MyPostPropsType = {
     posts: Array<PostType>
     message: string
-    dispatch: (action: TsarType) => void
+   // dispatch: (action: TsarType) => void
+    onNewTextCallBack: (newText:string)=>void
+    addPostCallBack: ()=>void
+
 }
 
 const MyPosts: React.FC<MyPostPropsType> = (props) => {
     let postElement = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}/>)
-    let addNewPost = () => {
-        props.dispatch({type:'ADD-POST', postMessage:props.message})
+    // let addNewPost = () => {
+    //     props.dispatch(AddPostAC(props.message))
+    // }
+    // const onNewTextChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
+    //  props.dispatch(UpdateNewPostAC(e.currentTarget.value))
+    // }
+    const onNewTextChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>)=>{
+        props.onNewTextCallBack(e.currentTarget.value)
     }
-    const onNewTextChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
-     props.dispatch({type:'UPDATE-NEW-POST-TEXT', message:e.currentTarget.value})
+    const addNewPost = ()=>{
+        props.addPostCallBack()
     }
     return (
         <div className={s.postsBlock}>
