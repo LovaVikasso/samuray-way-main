@@ -1,6 +1,6 @@
 
 import {DialogsPageType, TsarType} from "./myStore";
-import {MessageDataType} from "../components/Dialogs/Dialogs";
+import {MessageDataType} from "./myStore";
 
 const initialState = {
     dialogs: [

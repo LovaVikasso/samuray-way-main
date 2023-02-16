@@ -10,10 +10,10 @@ export type ProfilePageType = {
     posts: Array<PostType>
     newPostMessage: string
 }
-type DialogDataType = {
+export type DialogDataType = {
     id: number, name: string
 }
-type MessageDataType = {
+export type MessageDataType = {
     id: number,
     text: string
 }

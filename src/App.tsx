@@ -9,6 +9,7 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {RootStateType, TsarType} from "./redux/myStore";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 type AppProps = {
@@ -27,7 +28,7 @@ const App: React.FC<AppProps> = (props) => {
                     <Route path='/profile' render={() => <Profile posts={props.addState.profilePage.posts}
                                                                   message={props.addState.profilePage.newPostMessage}
                                                                   dispatch={props.dispatch}/>}/>
-                    <Route path='/dialogs' render={() => <Dialogs dialogs={props.addState.dialogsPage.dialogs}
+                    <Route path='/dialogs' render={() => <DialogsContainer dialogs={props.addState.dialogsPage.dialogs}
                                                                   messages={props.addState.dialogsPage.messages}
                                                                   newMessage={props.addState.dialogsPage.newMessage}
                                                                   dispatch={props.dispatch}/>}/>
