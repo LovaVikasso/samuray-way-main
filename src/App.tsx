@@ -13,8 +13,8 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 type AppProps = {
-    addState: RootStateType
-    dispatch: (action: TsarType) => void
+   // addState: RootStateType
+    // dispatch: (action: TsarType) => void
 }
 const App: React.FC<AppProps> = (props) => {
 
@@ -25,13 +25,8 @@ const App: React.FC<AppProps> = (props) => {
                 <Header/>
                 <Nav/>
                 <div className="app-wrapper-content">
-                    <Route path='/profile' render={() => <Profile posts={props.addState.profilePage.posts}
-                                                                  message={props.addState.profilePage.newPostMessage}
-                                                                  dispatch={props.dispatch}/>}/>
-                    <Route path='/dialogs' render={() => <DialogsContainer dialogs={props.addState.dialogsPage.dialogs}
-                                                                  messages={props.addState.dialogsPage.messages}
-                                                                  newMessage={props.addState.dialogsPage.newMessage}
-                                                                  dispatch={props.dispatch}/>}/>
+                    <Route path='/profile' render={() => <Profile/>}/>
+                    <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>

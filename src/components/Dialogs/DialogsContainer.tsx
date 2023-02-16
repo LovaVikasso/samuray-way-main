@@ -1,21 +1,38 @@
-import React, {ChangeEvent} from 'react';
-
-import {AddMessageAC, DialogDataType, MessageDataType, TsarType, UpdateNewMessageAC} from "../../redux/myStore";
+import React from 'react';
 import Dialogs from "./Dialogs";
+import StoreContext from "../../StoreContext";
+import {AddMessageAC, UpdateNewMessageAC} from "../../redux/dialogs-reducer";
+// type DialogsType = {
+//     // dialogs: Array<DialogDataType>,
+//     // messages: Array<MessageDataType>
+//     // dispatch: (action: TsarType) => void
+//     // newMessage:string
+// }
+const DialogsContainer= () => {
 
-type DialogsType = {
-    dialogs: Array<DialogDataType>,
-    messages: Array<MessageDataType>
-    dispatch: (action: TsarType) => void
-    newMessage:string
+    return (
+        <StoreContext.Consumer>
+            {
+                (store) => {
+                    {
+                        let addMessage = () => {
+                            store.dispatch(AddMessageAC())
+                        }
+                        let onChangeHandler = (newText: string) => {
+                            store.dispatch(UpdateNewMessageAC(newText))
+                        }
+
+                        return (
+                            <Dialogs dialogs={store.getState().dialogsPage.dialogs}
+                                     messages={store.getState().dialogsPage.messages}
+                                     newMessage={store.getState().dialogsPage.newMessage}
+                                     addMessageCallBack={addMessage}
+                                     onChangeCallBack={onChangeHandler}/>)
+                    }
+                }
+            }
+        </StoreContext.Consumer>)
 }
-const DialogsContainer:React.FC<DialogsType> = (props) => {
-    let addMessage = () => {
-        props.dispatch(AddMessageAC(props.newMessage))
-    }
-    let onChangeHandler = (newText:string)=>{
-        props.dispatch(UpdateNewMessageAC(newText))
-    }
-    return <Dialogs dialogs={props.dialogs} messages={props.messages} newMessage={props.newMessage} addMessageCallBack={addMessage} onChangeCallBack={onChangeHandler}/>
-}
+
+
 export default DialogsContainer

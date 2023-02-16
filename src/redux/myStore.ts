@@ -1,5 +1,5 @@
-import {profileReducer} from "./profile-reducer";
-import {dialogsReducer} from "./dialogs-reducer";
+import {AddPostAC, profileReducer, UpdateNewPostAC} from "./profile-reducer";
+import {AddMessageAC, dialogsReducer, UpdateNewMessageAC} from "./dialogs-reducer";
 
 export type PostType = {
     id: number,
@@ -40,30 +40,7 @@ type AddMessageActionType = ReturnType<typeof AddMessageAC>
 type UpdateNewMessageActonType = ReturnType<typeof UpdateNewMessageAC>
 
 export type TsarType = AddPostActionType | UpdateNewPostActonType | AddMessageActionType | UpdateNewMessageActonType
-export const AddPostAC = (postMessage: string) => {
-    return {
-        type: 'ADD-POST',
-        postMessage
-    } as const
-}
-export const UpdateNewPostAC = (message: string) => {
-    return {
-        type: 'UPDATE-NEW-POST-TEXT',
-        message
-    } as const
-}
-export const AddMessageAC = (textMessage: string) => {
-    return {
-        type: 'SEND-MESSAGE',
-        textMessage
-    } as const
-}
-export const UpdateNewMessageAC = (newTextMessage: string) => {
-    return {
-        type: 'UPDATE-NEW-MESSAGE-TEXT',
-        newTextMessage
-    } as const
-}
+
 
 let myStore: StoreType = {
     _state: {

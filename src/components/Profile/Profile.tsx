@@ -6,17 +6,17 @@ import {PostType, TsarType} from "../../redux/myStore";
 import MyPostsContainer from "./My Posts/MyPostsContainer";
 
 type ProfilePropsType = {
-    posts:Array<PostType>
-    message:string
-    dispatch: (action: TsarType) => void
+    // posts:Array<PostType>
+    // message:string
+    // dispatch: (action: TsarType) => void
 }
-const Profile: React.FC<ProfilePropsType> = (props) => {
+const Profile= () => {
 
     return (
 
         <div className={s.content}>
             <ProfileInfo />
-            <MyPostsContainer posts={props.posts} message={props.message} dispatch={props.dispatch}/>
+            <MyPostsContainer />
         </div>
     )
 }
