@@ -4,6 +4,7 @@ import MyPosts from "./My Posts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {PostType, TsarType} from "../../redux/myStore";
 import MyPostsContainer from "./My Posts/MyPostsContainer";
+import {store} from "../../redux/redux-store";
 
 type ProfilePropsType = {
     // posts:Array<PostType>
@@ -16,7 +17,7 @@ const Profile= () => {
 
         <div className={s.content}>
             <ProfileInfo />
-            <MyPostsContainer />
+            <MyPostsContainer state={store.getState().profilePage}/>
         </div>
     )
 }

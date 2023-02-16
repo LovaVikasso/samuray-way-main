@@ -1,7 +1,8 @@
 import React from "react";
 import MyPosts from "./MyPosts";
-import StoreContext from "../../../StoreContext";
 import {AddPostAC, UpdateNewPostAC} from "../../../redux/profile-reducer";
+import {RootStateType} from "../../../redux/myStore";
+import {connect} from "react-redux";
 
 
 // type MyPostPropsType = {
@@ -10,29 +11,46 @@ import {AddPostAC, UpdateNewPostAC} from "../../../redux/profile-reducer";
 //     // dispatch: (action: TsarType) => void
 // }
 
-const MyPostsContainer= () => {
-// const MyPostsContainer: React.FC<MyPostPropsType> = (props) => {
-// const MyPostsContainer: React.FC<MyPostPropsType> = (props) => {
-    return (
-        <StoreContext.Consumer>
-            {
-            (store) => {
-                {
-                    let addNewPost = () => {
-                        // store.dispatch(AddPostAC(props.message))
-                        store.dispatch(AddPostAC())
-                    }
-                    const onNewTextChangeHandler = (newText: string) => {
-                        store.dispatch(UpdateNewPostAC(newText))
-                    }
-                    return (
-                        <MyPosts posts={store.getState().profilePage.posts}
-                                 message={store.getState().profilePage.newPostMessage}
-                                 onNewTextCallBack={onNewTextChangeHandler}
-                                 addPostCallBack={addNewPost}/>)
-                }
-            }
-        }
-        </StoreContext.Consumer>)
+// const MyPostsContainer= () => {
+//     return (
+//         <StoreContext.Consumer>
+//             {
+//             (store) => {
+//                 {
+//                     let addNewPost = () => {
+//                         // store.dispatch(AddPostAC(props.message))
+//                         store.dispatch(AddPostAC())
+//                     }
+//                     const onNewTextChangeHandler = (newText: string) => {
+//                         store.dispatch(UpdateNewPostAC(newText))
+//                     }
+//                     return (
+//                         <MyPosts state={store.getState().profilePage}
+//                                  onNewTextCallBack={onNewTextChangeHandler}
+//                                  addPostCallBack={addNewPost}/>)
+//                 }
+//             }
+//         }
+//         </StoreContext.Consumer>)
+// }
+
+const mapStateToProps = (state: RootStateType) => {
+    return {
+        profilePage: state.profilePage
+    }
 }
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        addPostCallBack: () => {
+            dispatch(AddPostAC())
+        },
+        onNewTextCallBack: (newText: string) => {
+            dispatch(UpdateNewPostAC(newText))
+        }
+    }
+}
+
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+
 export default MyPostsContainer

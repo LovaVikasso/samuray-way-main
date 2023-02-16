@@ -1,10 +1,9 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {PostType} from "../../../redux/myStore";
+import {PostType, ProfilePageType} from "../../../redux/myStore";
 type MyPostPropsType = {
-    posts: Array<PostType>
-    message: string
+    state: ProfilePageType
    // dispatch: (action: TsarType) => void
     onNewTextCallBack: (newText:string)=>void
     addPostCallBack: ()=>void
@@ -12,7 +11,7 @@ type MyPostPropsType = {
 }
 
 const MyPosts: React.FC<MyPostPropsType> = (props) => {
-    let postElement = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}/>)
+    let postElement = props.state.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}/>)
     // let addNewPost = () => {
     //     props.dispatch(AddPostAC(props.message))
     // }
@@ -25,10 +24,11 @@ const MyPosts: React.FC<MyPostPropsType> = (props) => {
     const addNewPost = ()=>{
         props.addPostCallBack()
     }
+    const newPostMessage = props.state.newPostMessage
     return (
         <div className={s.postsBlock}>
             <div className={s.postBlock}>New post</div>
-            <div className={s.postBlock}><textarea onChange={onNewTextChangeHandler} value={props.message} placeholder="Напиши сюда текст нового поста"/></div>
+            <div className={s.postBlock}><textarea onChange={onNewTextChangeHandler} value={newPostMessage} placeholder="Напиши сюда текст нового поста"/></div>
             <div className={s.postBlock}>
                 <button onClick={addNewPost}>Add post</button>
             </div>

@@ -1,38 +1,58 @@
 import React from 'react';
 import Dialogs from "./Dialogs";
-import StoreContext from "../../StoreContext";
 import {AddMessageAC, UpdateNewMessageAC} from "../../redux/dialogs-reducer";
+import {connect} from "react-redux";
+import {RootStateType} from "../../redux/myStore";
+
 // type DialogsType = {
 //     // dialogs: Array<DialogDataType>,
 //     // messages: Array<MessageDataType>
 //     // dispatch: (action: TsarType) => void
 //     // newMessage:string
 // }
-const DialogsContainer= () => {
+// const DialogsContainer = () => {
+//
+//     return (
+//         <StoreContext.Consumer>
+//             {
+//                 (store) => {
+//                     {
+//                         let addMessage = () => {
+//                             store.dispatch(AddMessageAC())
+//                         }
+//                         let onChangeHandler = (newText: string) => {
+//                             store.dispatch(UpdateNewMessageAC(newText))
+//                         }
+//
+//                         return (
+//                             <Dialogs
+//                                 state={store.getState().dialogsPage}
+//                                 addMessageCallBack={addMessage}
+//                                 onChangeCallBack={onChangeHandler}/>)
+//                     }
+//                 }
+//             }
+//         </StoreContext.Consumer>)
+// }
 
-    return (
-        <StoreContext.Consumer>
-            {
-                (store) => {
-                    {
-                        let addMessage = () => {
-                            store.dispatch(AddMessageAC())
-                        }
-                        let onChangeHandler = (newText: string) => {
-                            store.dispatch(UpdateNewMessageAC(newText))
-                        }
+const mapStateToProps = (state:RootStateType) => {
 
-                        return (
-                            <Dialogs dialogs={store.getState().dialogsPage.dialogs}
-                                     messages={store.getState().dialogsPage.messages}
-                                     newMessage={store.getState().dialogsPage.newMessage}
-                                     addMessageCallBack={addMessage}
-                                     onChangeCallBack={onChangeHandler}/>)
-                    }
-                }
-            }
-        </StoreContext.Consumer>)
+    return {
+        dialogsPage: state.dialogsPage
+    }
+}
+const mapDispatchToProps = (dispatch:any) => {
+    return {
+        addMessageCallBack: () => {
+           dispatch(AddMessageAC());
+        },
+        onChangeCallBack: (newText:string) => {
+            dispatch(UpdateNewMessageAC(newText))
+        }
+    }
 }
 
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer
