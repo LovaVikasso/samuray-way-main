@@ -3,6 +3,7 @@ import Dialogs from "./Dialogs";
 import {AddMessageAC, UpdateNewMessageAC} from "../../redux/dialogs-reducer";
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/myStore";
+import {AppStateType} from "../../redux/redux-store";
 
 // type DialogsType = {
 //     // dialogs: Array<DialogDataType>,
@@ -35,7 +36,7 @@ import {RootStateType} from "../../redux/myStore";
 //         </StoreContext.Consumer>)
 // }
 
-const mapStateToProps = (state:RootStateType) => {
+const mapStateToProps = (state:AppStateType) => {
 
     return {
         dialogsPage: state.dialogsPage

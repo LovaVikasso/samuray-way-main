@@ -1,33 +1,45 @@
-import {PostType,ProfilePageType, TsarType} from "./myStore";
-
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
+export type PostType = {
+    id: number,
+    message: string,
+    likesCount: number
+}
+export type ProfilePageType = {
+    posts: Array<PostType>
+    newPostMessage: string
+}
 const initialState = {
     posts: [
         {id: 1, message: 'Hi', likesCount: 1},
         {id: 2, message: 'Hello', likesCount: 1},
         {id: 3, message: 'Nice to see you again', likesCount: 10},
-        {id: 4, message: 'YO', likesCount: 7}
     ],
         newPostMessage: 'Напиши сюда новый пост'
 }
-export const profileReducer = (state: ProfilePageType = initialState, action: TsarType) => {
+type AddPostActionType = ReturnType<typeof AddPostAC>
+type UpdateNewPostActonType = ReturnType<typeof UpdateNewPostAC>
+type ProfileReducerTYpe = AddPostActionType | UpdateNewPostActonType
+export const profileReducer = (state: ProfilePageType = initialState, action: ProfileReducerTYpe): ProfilePageType => {
     switch (action.type) {
         case ADD_POST : {
-
             let newPost: PostType = { //новый посто формата PostsType
                 id: state.posts.length + 1,
                 message: state.newPostMessage,
                 likesCount: 0
             };
-            state.posts.push(newPost)
-            state.newPostMessage = ""
-            return state
+            let stateCopy = {...state}
+            stateCopy.posts = [...state.posts]
+            stateCopy.posts.push(newPost)
+            stateCopy.newPostMessage = ""
+            return stateCopy
         }
         case UPDATE_NEW_POST_TEXT:
-            state.newPostMessage = action.message
-            return state
+            let stateCopy = {...state}
+            //console.log(stateCopy)
+            stateCopy.newPostMessage = action.message
+            return stateCopy
         default:
             return state
     }

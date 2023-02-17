@@ -1,12 +1,12 @@
 import {AddPostAC, profileReducer, UpdateNewPostAC} from "./profile-reducer";
 import {AddMessageAC, dialogsReducer, UpdateNewMessageAC} from "./dialogs-reducer";
 
-export type PostType = {
+type PostType = {
     id: number,
     message: string,
     likesCount: number
 }
-export type ProfilePageType = {
+type ProfilePageType = {
     posts: Array<PostType>
     newPostMessage: string
 }
@@ -80,7 +80,7 @@ let myStore: StoreType = {
     },
     dispatch(action) {
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
-        this._state.profilePage = profileReducer(this._state.profilePage, action);
+       // this._state.profilePage = profileReducer(this._state.profilePage, action); что-то ругается
         this._onChange()
     }
 }

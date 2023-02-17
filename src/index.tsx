@@ -1,8 +1,23 @@
 import './index.css';
-import myStore from "./redux/myStore";
-import {renderTree} from "./render";
 import {store} from "./redux/redux-store";
+import ReactDOM from "react-dom";
+import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
+import App from "./App";
+import React from "react";
+
+    ReactDOM.render(
+        <BrowserRouter>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </BrowserRouter>,
+        document.getElementById('root')
+    );
 
 
-renderTree() //вызываем рендер при запуске приложения
-store.subscribe(renderTree) //окгда меняется state вызываем перерисовку
+
+//bind используем всегда если в в методе используется this. в скобках пишем объект в котором берем этот метод
+
+//renderTree() //вызываем рендер при запуске приложения
+//store.subscribe(renderTree) //окгда меняется state вызываем перерисовку

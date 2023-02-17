@@ -27,14 +27,16 @@ export const dialogsReducer = (state:DialogsPageType = initialState, action:Tsar
             id: state.messages.length + 1,
             text: state.newMessage
         };
-        state.messages.push(newMessage)
-        state.newMessage = ""
-            return state
+            let stateCopy = {...state}
+            stateCopy.messages = [...state.messages]
+        stateCopy.messages.push(newMessage)
+        stateCopy.newMessage = ""
+            return stateCopy
         }
 
         case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessage = action.newTextMessage
-            return state
+           // state.newMessage = action.newTextMessage
+            return {...state,newMessage:action.newTextMessage}
         default:
             return state
     }

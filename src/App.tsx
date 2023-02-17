@@ -16,7 +16,7 @@ type AppProps = {
    // addState: RootStateType
     // dispatch: (action: TsarType) => void
 }
-const App: React.FC<AppProps> = (props) => {
+const App= () => {
 
     return (
 

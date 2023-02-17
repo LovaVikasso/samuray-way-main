@@ -1,8 +1,9 @@
 import React from "react";
 import MyPosts from "./MyPosts";
-import {AddPostAC, UpdateNewPostAC} from "../../../redux/profile-reducer";
-import {RootStateType} from "../../../redux/myStore";
+import {AddPostAC, ProfilePageType, UpdateNewPostAC} from "../../../redux/profile-reducer";
 import {connect} from "react-redux";
+import {AppStateType} from "../../../redux/redux-store";
+import {Dispatch} from "redux";
 
 
 // type MyPostPropsType = {
@@ -33,19 +34,26 @@ import {connect} from "react-redux";
 //         }
 //         </StoreContext.Consumer>)
 // }
+type MapStatePropsType = ProfilePageType
+type MapDispatchPropsType = {
+    addPostCallBack: () => void
+    onNewTextCallBack: (message: string) => void
+}
 
-const mapStateToProps = (state: RootStateType) => {
+export type MyPostsPropsType = MapStatePropsType & MapDispatchPropsType
+const mapStateToProps = (state: AppStateType):MapStatePropsType=> {
     return {
-        profilePage: state.profilePage
+        posts: state.profilePage.posts,
+        newPostMessage:state.profilePage.newPostMessage
     }
 }
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch):MapDispatchPropsType => {
     return {
         addPostCallBack: () => {
             dispatch(AddPostAC())
         },
-        onNewTextCallBack: (newText: string) => {
-            dispatch(UpdateNewPostAC(newText))
+        onNewTextCallBack: (message: string) => {
+            dispatch(UpdateNewPostAC(message))
         }
     }
 }
