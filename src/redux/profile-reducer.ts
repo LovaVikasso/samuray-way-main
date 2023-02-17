@@ -20,8 +20,8 @@ const initialState = {
 }
 type AddPostActionType = ReturnType<typeof AddPostAC>
 type UpdateNewPostActonType = ReturnType<typeof UpdateNewPostAC>
-type ProfileReducerTYpe = AddPostActionType | UpdateNewPostActonType
-export const profileReducer = (state: ProfilePageType = initialState, action: ProfileReducerTYpe): ProfilePageType => {
+type ProfileReducerType = AddPostActionType | UpdateNewPostActonType
+export const profileReducer = (state: ProfilePageType = initialState, action: ProfileReducerType): ProfilePageType => {
     switch (action.type) {
         case ADD_POST : {
             let newPost: PostType = { //новый посто формата PostsType

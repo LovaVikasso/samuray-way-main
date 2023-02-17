@@ -10,14 +10,14 @@ type ProfilePageType = {
     posts: Array<PostType>
     newPostMessage: string
 }
-export type DialogDataType = {
+type DialogDataType = {
     id: number, name: string
 }
-export type MessageDataType = {
+type MessageDataType = {
     id: number,
     text: string
 }
-export type DialogsPageType = {
+ type DialogsPageType = {
     dialogs: Array<DialogDataType>,
     messages: Array<MessageDataType>,
     newMessage: string
@@ -79,7 +79,7 @@ let myStore: StoreType = {
         this._onChange = observer
     },
     dispatch(action) {
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        //this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
        // this._state.profilePage = profileReducer(this._state.profilePage, action); что-то ругается
         this._onChange()
     }

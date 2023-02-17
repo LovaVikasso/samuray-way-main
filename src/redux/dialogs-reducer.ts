@@ -1,6 +1,18 @@
-
-import {DialogsPageType, TsarType} from "./myStore";
-import {MessageDataType} from "./myStore";
+export type DialogDataType = {
+    id: number, name: string
+}
+export type MessageDataType = {
+    id: number,
+    text: string
+}
+export type DialogsPageType = {
+    dialogs: Array<DialogDataType>,
+    messages: Array<MessageDataType>,
+    newMessage: string
+}
+type AddMessageActionType = ReturnType<typeof AddMessageAC>
+type UpdateNewMessageActonType = ReturnType<typeof UpdateNewMessageAC>
+export type DialogsReducerType = AddMessageActionType | UpdateNewMessageActonType
 
 const SEND_MESSAGE = 'SEND-MESSAGE'
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
@@ -20,30 +32,35 @@ const initialState = {
         {id: 4, text: 'Yo'}
     ], newMessage: 'Напиши сюда новое сообщение'
 }
-export const dialogsReducer = (state:DialogsPageType = initialState, action:TsarType) => {
+export const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsReducerType) => {
     switch (action.type) {
         case SEND_MESSAGE: {
             let newMessage: MessageDataType = {
-            id: state.messages.length + 1,
-            text: state.newMessage
-        };
+                id: state.messages.length + 1,
+                text: state.newMessage
+            };
             let stateCopy = {...state}
             stateCopy.messages = [...state.messages]
-        stateCopy.messages.push(newMessage)
-        stateCopy.newMessage = ""
+            stateCopy.messages.push(newMessage)
+            stateCopy.newMessage = ""
             return stateCopy
         }
 
         case UPDATE_NEW_MESSAGE_TEXT:
-           // state.newMessage = action.newTextMessage
-            return {...state,newMessage:action.newTextMessage}
+            // state.newMessage = action.newTextMessage
+            let stateCopy = {...state}
+            //console.log(stateCopy)
+            stateCopy.newMessage = action.newTextMessage
+            return stateCopy
+
         default:
             return state
     }
 }
 export const AddMessageAC = () => {
     return {
-        type: 'SEND-MESSAGE'} as const
+        type: 'SEND-MESSAGE'
+    } as const
 }
 export const UpdateNewMessageAC = (newTextMessage: string) => {
     return {

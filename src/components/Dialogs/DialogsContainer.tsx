@@ -1,9 +1,11 @@
 import React from 'react';
 import Dialogs from "./Dialogs";
-import {AddMessageAC, UpdateNewMessageAC} from "../../redux/dialogs-reducer";
+import {AddMessageAC, DialogsPageType, UpdateNewMessageAC} from "../../redux/dialogs-reducer";
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/myStore";
 import {AppStateType} from "../../redux/redux-store";
+import {Dispatch} from "redux";
+import {ProfilePageType} from "../../redux/profile-reducer";
 
 // type DialogsType = {
 //     // dialogs: Array<DialogDataType>,
@@ -35,14 +37,22 @@ import {AppStateType} from "../../redux/redux-store";
 //             }
 //         </StoreContext.Consumer>)
 // }
+type MapStatePropsType = DialogsPageType
+type MapDispatchPropsType = {
+    addMessageCallBack: () => void
+    onChangeCallBack: (newText: string) => void
+}
 
-const mapStateToProps = (state:AppStateType) => {
-
+export type MyPostsPropsType = MapStatePropsType & MapDispatchPropsType
+const mapStateToProps = (state:AppStateType):MapStatePropsType => {
     return {
-        dialogsPage: state.dialogsPage
+        messages:state.dialogsPage.messages,
+        dialogs:state.dialogsPage.dialogs,
+        newMessage:state.dialogsPage.newMessage
+        //dialogsPage: state.dialogsPage
     }
 }
-const mapDispatchToProps = (dispatch:any) => {
+const mapDispatchToProps = (dispatch:Dispatch):MapDispatchPropsType => {
     return {
         addMessageCallBack: () => {
            dispatch(AddMessageAC());
