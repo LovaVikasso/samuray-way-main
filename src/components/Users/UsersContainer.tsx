@@ -7,28 +7,28 @@ import {Users} from "./Users";
 
 type MapStatePropsType = UsersPageType
 type MapDispatchPropsType = {
-    FollowCallBack: (id:number) => void
-    UnfollowCallBack: (id:number) => void
+    FollowCallBack: (id: number) => void
+    UnfollowCallBack: (id: number) => void
     SetUsersCallBack: (users: UserType[]) => void
 }
 
 export type UsersPropsType = MapStatePropsType & MapDispatchPropsType
-const mapStateToProps = (state:AppStateType):MapStatePropsType => {
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
-        users:state.usersPage.users
+        users: state.usersPage.users
     }
 }
-const mapDispatchToProps = (dispatch:Dispatch):MapDispatchPropsType => {
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
-       FollowCallBack: (id) => {
+        FollowCallBack: (id) => {
             dispatch(FollowAC(id));
         },
         UnfollowCallBack: (id) => {
             dispatch(UnFollowAC(id))
         },
         SetUsersCallBack: (users) => {
-           dispatch(SetUsersAC(users))
-    }
+            dispatch(SetUsersAC(users))
+        }
     }
 }
 

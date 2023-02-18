@@ -4,6 +4,7 @@ const SET_USERS = 'SET-USERS'
 
 export type UserType = {
     id: number,
+    avatar: string,
     name: string,
     followed: boolean
     status: string
@@ -16,6 +17,7 @@ const initialState: UsersPageType = {
     users: [
         {
             id: 1,
+            avatar: "https://e7.pngegg.com/pngimages/659/34/png-clipart-computer-icons-designer-avatar-design-business-silhouette.png",
             name: 'Victoria',
             followed: true,
             status: 'At work',
@@ -23,14 +25,36 @@ const initialState: UsersPageType = {
         },
         {
             id: 2,
+            avatar: "https://e7.pngegg.com/pngimages/659/34/png-clipart-computer-icons-designer-avatar-design-business-silhouette.png",
             name: 'Anna',
             followed: true,
             status: 'Some status',
             location: {country: 'Russia', city: 'Novorossiysk'}
         },
-        {id: 3, name: 'Maria', followed: true, status: 'At work', location: {country: 'Turkey', city: 'Mersin'}},
-        {id: 4, name: 'Chris', followed: false, status: 'Chilling', location: {country: 'USA', city: 'New York'}},
-        {id: 5, name: 'John', followed: false, status: '', location: {country: 'USA', city: 'Los Angeles'}},
+        {
+            id: 3,
+            avatar: "https://e7.pngegg.com/pngimages/659/34/png-clipart-computer-icons-designer-avatar-design-business-silhouette.png",
+            name: 'Maria',
+            followed: true,
+            status: 'At work',
+            location: {country: 'Turkey', city: 'Mersin'}
+        },
+        {
+            id: 4,
+            avatar: "https://e7.pngegg.com/pngimages/659/34/png-clipart-computer-icons-designer-avatar-design-business-silhouette.png",
+            name: 'Chris',
+            followed: false,
+            status: 'Chilling',
+            location: {country: 'USA', city: 'New York'}
+        },
+        {
+            id: 5,
+            avatar: "https://e7.pngegg.com/pngimages/659/34/png-clipart-computer-icons-designer-avatar-design-business-silhouette.png",
+            name: 'John',
+            followed: false,
+            status: '',
+            location: {country: 'USA', city: 'Los Angeles'}
+        },
     ]
 }
 type FollowActionType = ReturnType<typeof FollowAC>
