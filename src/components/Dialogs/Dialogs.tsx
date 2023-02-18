@@ -2,14 +2,14 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {MyPostsPropsType} from "./DialogsContainer";
+import {DialogsPropsType} from "./DialogsContainer";
 
 // type DialogsType = {
 //     state:DialogsPageType
 //     onChangeCallBack: (newText:string)=>void
 //     addMessageCallBack: ()=>void
 // }
-const Dialogs: React.FC<MyPostsPropsType> = (props) => {
+const Dialogs: React.FC<DialogsPropsType> = (props) => {
     let dialogsElement = props.dialogs.map((d) => <DialogItem key={d.id} name={d.name} id={d.id}/>)
     let messagesElement = props.messages.map((m) => <Message key={m.id} text={m.text}/>)
     const onChangeCallback = (e:ChangeEvent<HTMLTextAreaElement>) => {
