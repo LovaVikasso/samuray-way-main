@@ -1,0 +1,43 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogItems {
+
+}
+
+.dialogItems .active {
+    color: darkslategrey;
+
+}
+
+.dialog {
+    margin: 20px;
+}
+
+.dialog a {
+    text-decoration: none;
+    color: white;
+}
+
+.messages {
+
+}
+
+.message {
+    margin: 20px;
+}
+
+.addForm {
+    margin: 10px;
+}
+
+.addForm button {
+    padding: 8px;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 5px;
+    background-color: white;
+    border: white;
+    cursor: pointer;
+}

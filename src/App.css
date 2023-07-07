@@ -1,0 +1,18 @@
+.app-wrapper {
+  display: grid;
+  margin: 0 auto;
+  width: 1200px;
+  grid-template-areas:
+  "header header header"
+  "nav content content";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-gap: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.app-wrapper-content{
+  grid-area: content;
+  background-color: darkseagreen;
+  border-radius: 10px;
+}

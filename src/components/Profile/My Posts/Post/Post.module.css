@@ -1,0 +1,17 @@
+.post {
+    margin: 5px;
+}
+.item {
+    color: darkslateblue;
+
+}
+
+.item img{
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+
+}
+.like {
+    margin: 5px;
+}
