@@ -46,3 +46,4 @@ export const GetAuthTC = () => (dispatch: Dispatch<AuthReducerType>) => {
             }
         })
 }
+

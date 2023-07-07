@@ -20,7 +20,7 @@ export const LoginHookForm = (props: any) => {
         }
     });
     const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
-    console.log(watch())//подсвечивает что вводим
+    // console.log(watch())//подсвечивает что вводим
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
