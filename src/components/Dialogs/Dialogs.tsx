@@ -4,6 +4,7 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {DialogsPropsType} from "./DialogsContainer";
 import {AddTextForm} from "../common/AddTextForm";
+import { AddTextHookForm } from '../forms/AddTextHookForm';
 
 const Dialogs: React.FC<DialogsPropsType> = (props) => {
     let state = props.dialogsPage
@@ -23,7 +24,8 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
             </div>
             <div className={s.addForm}>
                 <div>
-                    <AddTextForm onClick={addMessage} />
+                    {/*<AddTextForm onClick={addMessage} />*/}
+                    <AddTextHookForm onClick={addMessage}/>
                 </div>
             </div>
         </div>
