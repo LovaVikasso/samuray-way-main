@@ -2,7 +2,8 @@ import React from "react";
 import s from './ProfileInfo.module.css'
 import {ProfileUserType} from "../../../redux/profile-reducer";
 import {ProfileError} from "./ProfileError";
-import {ProfileStatus} from "../../ProfileStatus";
+import { ProfileStatus } from "../ProfileStatus";
+
 
 type ProfilePropsType = {
     profile: ProfileUserType | null,

@@ -8,25 +8,27 @@ type Inputs = {
     login: string,
     password: string,
     rememberMe: boolean
-
 }
-export const LoginHookForm = (props: any) => {
+type PropsType = {
+    login: (email: string, password: string, rememberMe: boolean) => void
+    logout: () => void,
+}
+export const LoginHookForm = (props: PropsType) => {
     const {register, handleSubmit, watch, formState: {errors}} = useForm<Inputs>({
         defaultValues: {
             login: "",
             password: "",
             rememberMe: false
-
         }
     });
-    const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
+    const onSubmit: SubmitHandler<Inputs> = data => props.login(data.login, data.password, data.rememberMe);
     // console.log(watch())//подсвечивает что вводим
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <input {...register('login', {required: "Login is required"})} placeholder={'Login'}/>
             <p>{errors.login?.message}</p>
-            <input {...register('password', {
+            <input type="password" {...register('password', {
                 required: "This is required",
                 minLength: {value: 4, message: "Min length is  4 simbols"}
             })} placeholder={'Password'}/>

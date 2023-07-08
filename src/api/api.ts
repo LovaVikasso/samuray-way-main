@@ -33,8 +33,15 @@ export const API = {
     updateStatus(status: string) {
         return instance.put(`profile/status/`,{status: status})
             .then(response => response.data)
-    }
-
+    },
+    login(email:string, password:string, rememberMe:boolean = false) {
+        return instance.post(`auth/login/`,{email, password, rememberMe})
+            .then(response => response.data)
+    },
+    logout() {
+        return instance.delete(`auth/login`)
+            .then(response => response.data)
+    },
 }
 
 // type StatusResponseType = { status: string | null }
