@@ -10,13 +10,14 @@ type Inputs = {
     text: string
 }
 export const AddTextHookForm = (props: AddTextFormType) => {
-    const {register, handleSubmit, formState: {errors}} = useForm<Inputs>({
+    const {register, handleSubmit,reset, formState: {errors}} = useForm<Inputs>({
         defaultValues: {
             text: '',
         }
     });
-    const onSubmit: SubmitHandler<Inputs> = data => props.onClick(data.text);
+    const onSubmit: SubmitHandler<Inputs> = data => {props.onClick(data.text); reset()}
     // console.log(watch())//подсвечивает что вводим
+    //reset() зачищает форму
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>

@@ -5,7 +5,6 @@ import {AuthMeType} from "../../redux/auth-reducer";
 
 type HeaderPropsType = { authData: AuthMeType, LogoutTC: () => void }
 const Header = (props: HeaderPropsType) => {
-    console.log(props.authData)
     return (
 
         <header className={s.header}>

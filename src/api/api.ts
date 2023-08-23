@@ -6,41 +6,41 @@ const instance = axios.create({
     headers: {'API-KEY': 'c439f5a5-bddd-4704-8efe-2b5d6564f02a'}
 })
 export const API = {
-    getUsers(currentPage: number, pageSize: number) {
-        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
-            .then(response => response.data)
+    async getUsers(currentPage: number, pageSize: number) {
+        const response = await instance.get(`users?page=${currentPage}&count=${pageSize}`);
+        return response.data;
     },
-    unfollowUser(userId: number) {
-        return instance.delete(`follow/${userId}`)
-            .then(response => response.data)
+    async unfollowUser(userId: number) {
+        const response = await instance.delete(`follow/${userId}`);
+        return response.data;
     },
-    followUser(userId: number) {
-        return instance.post(`follow/${userId}`, {})
-            .then(response => response.data)
+    async followUser(userId: number) {
+        const response = await instance.post(`follow/${userId}`, {});
+        return response.data;
     },
-    getAuthMe () {
-        return instance.get(`auth/me`)
-            .then(response => response.data)
+    async getAuthMe() {
+        const response = await instance.get(`auth/me`);
+        return response.data;
     },
-    setUserProfile (userId: string | number) {
-        return instance.get(`/profile/${userId}`)
-            .then(response => response.data)
+    async setUserProfile(userId: string | number) {
+        const response = await instance.get(`/profile/${userId}`);
+        return response.data;
     },
-    getStatus (userId: string | number | null) {
-        return instance.get<string>(`profile/status/${userId}`)
-            .then(response => response.data)
+    async getStatus(userId: string | number | null) {
+        const response = await instance.get<string>(`profile/status/${userId}`);
+        return response.data;
     },
-    updateStatus(status: string) {
-        return instance.put(`profile/status/`,{status: status})
-            .then(response => response.data)
+    async updateStatus(status: string) {
+        const response = await instance.put(`profile/status/`, {status: status});
+        return response.data;
     },
-    login(email:string, password:string, rememberMe:boolean = false) {
-        return instance.post(`auth/login/`,{email, password, rememberMe})
-            .then(response => response.data)
+    async login(email: string, password: string, rememberMe: boolean = false) {
+        const response = await instance.post(`auth/login/`, {email, password, rememberMe});
+        return response.data;
     },
-    logout() {
-        return instance.delete(`auth/login`)
-            .then(response => response.data)
+    async logout() {
+        const response = await instance.delete(`auth/login`);
+        return response.data;
     },
 }
 
