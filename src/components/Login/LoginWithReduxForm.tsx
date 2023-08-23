@@ -4,7 +4,7 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import { Input, FormsControls} from '../common/FormsControls';
 import { maxLengthCreator, requiredField } from '../../utils/validator';
 import { LoginHookForm } from '../forms/LoginHookForm';
-
+//УСТАРЕВШАЯ БИБЛИОТЕКА
 type FormDataType = {
     login: string
     password: string

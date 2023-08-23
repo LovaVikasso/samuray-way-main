@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './Login.module.css'
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import { Input, FormsControls} from '../common/FormsControls';
-import { maxLengthCreator, requiredField } from '../../utils/validator';
+// import {Field, InjectedFormProps, reduxForm} from "redux-form";
+// import { Input, FormsControls} from '../common/FormsControls';
+// import { maxLengthCreator, requiredField } from '../../utils/validator';
 import { LoginHookForm } from '../forms/LoginHookForm';
 import { connect } from 'react-redux';
 import { LoginTC, LogoutTC } from '../../redux/auth-reducer';

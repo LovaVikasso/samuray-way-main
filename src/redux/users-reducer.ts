@@ -139,5 +139,3 @@ export const UnFollowUserTC = (userId: number) => (dispatch: Dispatch<UsersReduc
             dispatch(ToddleFollowingInProgress(false, userId))
         })
 }
-
-

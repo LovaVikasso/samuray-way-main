@@ -75,6 +75,8 @@ export const LoginTC = (email: string, password: string, rememberMe: boolean) =>
                 dispatch(GetAuthTC())
             }
             else {
+                console.log(response.messages)
+                // return response.messages
                dispatch(SetError(response.messages))
             }
         })//санка в санке XD
