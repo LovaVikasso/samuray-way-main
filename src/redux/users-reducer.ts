@@ -1,5 +1,5 @@
 //types
-import {API} from "../api/api";
+import {userAPI} from "../api/api";
 import {Dispatch} from "redux";
 
 export type UserType = {
@@ -107,7 +107,7 @@ export const ToddleFollowingInProgress = (inProgress: boolean, userId: number) =
 } as const)
 export const GetUsersTC = (currentPage: number, pageSize: number) => (dispatch: ThunkDispatch) => {
     dispatch(ToddleIsFetching(true))
-    API.getUsers(currentPage, pageSize)
+    userAPI.getUsers(currentPage, pageSize)
         .then(response => {
             dispatch(SetUsers(response.items))
             dispatch(SetTotalCount(response.totalCount))
@@ -119,7 +119,7 @@ export const GetUsersTC = (currentPage: number, pageSize: number) => (dispatch: 
 export const FollowTC = (userId: number) => {
     return (dispatch: ThunkDispatch) => {
         dispatch(ToddleFollowingInProgress(true, userId))
-        API.followUser(userId)
+        userAPI.followUser(userId)
             .then(response => {
                 if (response.resultCode === 0) {
                     dispatch(Follow(userId))
@@ -131,7 +131,7 @@ export const FollowTC = (userId: number) => {
 
 export const UnFollowUserTC = (userId: number) => (dispatch: Dispatch<UsersReducerType>) => {
     dispatch(ToddleFollowingInProgress(true, userId))
-    API.unfollowUser(userId)
+    userAPI.unfollowUser(userId)
         .then(response => {
             if (response.resultCode === 0) {
                 dispatch(UnFollow(userId))

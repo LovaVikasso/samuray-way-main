@@ -1,4 +1,4 @@
-import {API} from "../api/api";
+import {userAPI} from "../api/api";
 import {Dispatch} from "redux";
 
 //types
@@ -99,14 +99,14 @@ export const SetUserStatus = (status: string) => ({type: 'SET-USER-STATUS', stat
 
 //thunk creators
 export const SetUserProfileTC = (userId: string | number) => (dispatch: Dispatch<ProfileReducerType>) => {
-    API.setUserProfile(userId)
+    userAPI.setUserProfile(userId)
         .then(response => {
             dispatch(SetUserProfile(response))
         })
 }
 export const SetUserStatusTC = (userId: string | number) => {
     return (dispatch: Dispatch<ProfileReducerType>) => {
-        API.getStatus(userId)
+        userAPI.getStatus(userId)
             .then(response => {
                 dispatch(SetUserStatus(response))
             })
@@ -114,7 +114,7 @@ export const SetUserStatusTC = (userId: string | number) => {
 }
 
 export const UpdateStatusTC = (status: string) => (dispatch: Dispatch<ProfileReducerType>) => {
-    API.updateStatus(status)
+    userAPI.updateStatus(status)
         .then(response => {
             if (response.resultCode === 0 ) {
                 dispatch(SetUserStatus(status))
