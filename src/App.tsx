@@ -33,6 +33,7 @@ class App extends React.Component<AppPropsType> {
         }
         return (
             <BrowserRouter>
+
                 <div className="app-wrapper">
                     <HeaderContainer/>
                     <Nav/>
@@ -47,6 +48,7 @@ class App extends React.Component<AppPropsType> {
                         {/*<Route path='/friends' render={() => <Friends/>}/>*/}
                     </div>
                 </div>
+
             </BrowserRouter>
         );
     }

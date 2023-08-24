@@ -7,11 +7,9 @@ import App from "./App";
 import React from "react";
 
     ReactDOM.render(
-        <BrowserRouter>
-            <Provider store={store}>
+        <Provider store={store}>
                 <App/>
-            </Provider>
-        </BrowserRouter>,
+        </Provider>,
         document.getElementById('root')
     );
 
