@@ -1,6 +1,5 @@
-import {Dispatch} from "redux";
+import {AnyAction, Dispatch, } from "redux";
 import {AppThunkDispatch} from "./redux-store";
-import {stopSubmit} from "redux-form";
 import {authAPI } from "../api/api";
 
 export type AuthMeType = {
@@ -24,12 +23,11 @@ const initialState: AuthMeType = {
     error: null
 }
 
-type SetUserDataType = ReturnType<typeof SetAuthUserData>
+export type SetUserDataType = ReturnType<typeof SetAuthUserData>
 type SetErrorType = ReturnType<typeof SetError>
 
 
-type AuthReducerType = SetUserDataType | SetErrorType
-
+export type AuthReducerType = SetUserDataType | SetErrorType
 export const authReducer = (state: AuthMeType = initialState, action: AuthReducerType): AuthMeType => {
     switch (action.type) {
 
@@ -59,14 +57,11 @@ export const SetError = (error:string) => ({type: 'SET-ERROR', error} as const)
 
 //thunks creator
 
-export const GetAuthTC = () => (dispatch: Dispatch<AuthReducerType>) => {
-    authAPI.getAuthMe()
-        .then(response => {
-            if (response.resultCode === 0) {
-                dispatch(SetAuthUserData(response.data.id, response.data.email, response.data.login, true))
-            }
-
-        })
+export const GetAuthTC = () => async (dispatch: Dispatch<AnyAction>) => {
+    const response = await authAPI.getAuthMe();
+    if (response.resultCode === 0) {
+        dispatch(SetAuthUserData(response.data.id, response.data.email, response.data.login, true));
+    }
 }
 export const LoginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: AppThunkDispatch) => {
     authAPI.login(email, password, rememberMe)
@@ -89,4 +84,6 @@ export const LogoutTC = () => (dispatch: AppThunkDispatch) => {
             }
         })
 }
+
+
 
