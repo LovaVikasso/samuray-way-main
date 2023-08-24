@@ -33,6 +33,10 @@ class ProfileContainer extends React.Component<PropsType> {
         //my id 28820
         if (!userId && this.props.profile) {
             userId = Number(this.props.authorizedUserId)
+            if(!this.props.authorizedUserId) {
+                this.props.history.push('/login')
+                //редирект если нет пользовател обратно на логин
+            }
         }
         this.props.SetUserProfileTC(userId)
         this.props.SetUserStatusTC(userId)

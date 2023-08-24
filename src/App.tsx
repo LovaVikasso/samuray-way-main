@@ -10,28 +10,53 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
+import {AppStateType} from './redux/redux-store';
+import {connect} from 'react-redux';
+import {InitializeTC} from './redux/app-reducer';
+import {Preloader} from './components/common/Preloader';
 
-const App = () => {
 
-    return (
-        <BrowserRouter>
-            <div className="app-wrapper">
-                <HeaderContainer/>
-                <Nav/>
-                <div className="app-wrapper-content">
-                    <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                    <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                    <Route path='/users' render={() => <UsersContainer />}/>
-                    <Route path='/news' render={() => <News/>}/>
-                    <Route path='/music' render={() => <Music/>}/>
-                    <Route path='/settings' render={() => <Settings/>}/>
-                    <Route path='/login' render={() => <Login/>}/>
-                    {/*<Route path='/friends' render={() => <Friends/>}/>*/}
+type MapStatePropsType = { initialize: boolean }
+type MapDispatchPropsType = {
+    InitializeTC: () => void
+}
+export type AppPropsType = MapStatePropsType & MapDispatchPropsType
+
+
+class App extends React.Component<AppPropsType> {
+    componentDidMount() {
+        this.props.InitializeTC()
+    }
+
+    render() {
+        if (!this.props.initialize) {
+            return <Preloader/>
+        }
+        return (
+            <BrowserRouter>
+                <div className="app-wrapper">
+                    <HeaderContainer/>
+                    <Nav/>
+                    <div className="app-wrapper-content">
+                        <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                        <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+                        <Route path='/users' render={() => <UsersContainer/>}/>
+                        <Route path='/news' render={() => <News/>}/>
+                        <Route path='/music' render={() => <Music/>}/>
+                        <Route path='/settings' render={() => <Settings/>}/>
+                        <Route path='/login' render={() => <Login/>}/>
+                        {/*<Route path='/friends' render={() => <Friends/>}/>*/}
+                    </div>
                 </div>
-            </div>
-        </BrowserRouter>
-    );
+            </BrowserRouter>
+        );
+    }
 }
 
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
+    return {
+        initialize: state.app.initialize,
 
-export default App;
+    }
+}
+export default connect(mapStateToProps, {InitializeTC})(App);

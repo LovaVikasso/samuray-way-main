@@ -6,8 +6,10 @@ import {authReducer} from "./auth-reducer";
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {useDispatch} from "react-redux";
 import {reducer as formReducer} from 'redux-form'
+import { appReducer } from "./app-reducer";
 
 const rootReducer = combineReducers({
+    app:appReducer,
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     usersPage:usersReducer,

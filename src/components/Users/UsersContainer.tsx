@@ -103,7 +103,7 @@ export default compose<ComponentType>(connect(mapStateToProps, {
     // ToddleIsFetching,
     ToddleFollowingInProgress,
     GetUsersTC
-}),withAuthRedirect)(UsersContainer); //типизация и action должны не отличаться по имени
+}))(UsersContainer); //типизация и action должны не отличаться по имени
 
 
 

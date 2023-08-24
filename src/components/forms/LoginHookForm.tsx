@@ -1,6 +1,5 @@
 import React from 'react';
 import s from '../Login/Login.module.css'
-// import {maxLengthCreator, requiredField} from "../../utils/validator";
 import {useForm, SubmitHandler, FieldErrors} from "react-hook-form";
 import { useAppDispatch } from '../../redux/redux-store';
 
@@ -33,7 +32,6 @@ export const LoginHookForm = (props: PropsType) => {
     });
     const onSubmit: SubmitHandler<Inputs> = data => {
         props.login(data.login, data.password, data.rememberMe);
-
         // console.log(data) //{login: 'dsvsdv', password: 'dsvdsvsdv', rememberMe: false}
         reset();
     }
