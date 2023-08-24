@@ -3,7 +3,7 @@ import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 import {MyPostsPropsType} from "./MyPostsContainer";
 import {AddTextForm} from "../../common/AddTextForm";
-import { AddTextHookForm } from "../../forms/AddTextHookForm";
+import {AddTextHookForm} from "../../forms/AddTextHookForm";
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     let postElement = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}/>)
@@ -13,7 +13,9 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     return (
         <div className={s.postsBlock}>
             {/*<AddTextForm onClick={addNewPost}/>*/}
-            <AddTextHookForm onClick={addNewPost}/>
+            <div className={s.newPost}>
+                <AddTextHookForm onClick={addNewPost}/>
+            </div>
             {postElement}
         </div>
     )
