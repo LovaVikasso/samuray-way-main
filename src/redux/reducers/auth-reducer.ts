@@ -1,6 +1,6 @@
 import {AnyAction, Dispatch, } from "redux";
 import {AppThunkDispatch} from "../redux-store";
-import {authAPI } from "../../api/api";
+import { authAPI } from "../../api/authAPI";
 
 export type AuthMeType = {
     id: number | null
@@ -69,7 +69,7 @@ export const LoginTC = (email: string, password: string, rememberMe: boolean) =>
         console.log(response.messages);
         // return response.messages
         dispatch(SetError(response.messages));
-    }//санка в санке XD
+    }
 }
 export const LogoutTC = () => async (dispatch: AppThunkDispatch) => {
     const response = await authAPI.logout();
