@@ -1,4 +1,7 @@
-
+.users {
+    display: flex;
+    flex-wrap: wrap;
+}
 .friend {
     display: inline-block;
     margin: 10px;

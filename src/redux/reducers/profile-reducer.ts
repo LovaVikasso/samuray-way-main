@@ -1,5 +1,6 @@
-import {userAPI} from "../api/api";
+
 import {Dispatch} from "redux";
+import { userAPI } from "../../api/api";
 
 //types
 export type PostType = {

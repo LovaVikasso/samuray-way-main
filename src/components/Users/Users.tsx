@@ -1,7 +1,7 @@
 import React from 'react';
 import s from "./Users.module.css";
 import userWithOutAvatar from "../../assets/images/userWithOutAvatar.png";
-import {FollowTC, UnFollowUserTC, UserType} from "../../redux/users-reducer";
+import {FollowTC, UnFollowUserTC, UserType} from "../../redux/reducers/users-reducer";
 import {NavLink} from "react-router-dom";
 import {useAppDispatch} from "../../redux/redux-store";
 
@@ -27,7 +27,7 @@ export const Users: React.FC<PropsType> = (props) => {
         pages.push(i)
     }
 
-    return <div>
+    return <div className={s.users}>
         {
             props.users.map((user) => <div key={user.id}>
                 <span>

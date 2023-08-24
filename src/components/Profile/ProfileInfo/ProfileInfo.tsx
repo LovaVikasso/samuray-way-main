@@ -1,6 +1,6 @@
 import React from "react";
 import s from './ProfileInfo.module.css'
-import {ProfileUserType} from "../../../redux/profile-reducer";
+import {ProfileUserType} from "../../../redux/reducers/profile-reducer";
 import {ProfileError} from "./ProfileError";
 import { ProfileStatus } from "../ProfileStatus";
 

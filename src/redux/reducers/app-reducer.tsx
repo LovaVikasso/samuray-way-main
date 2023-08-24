@@ -1,5 +1,5 @@
-import {GetAuthTC, SetUserDataType} from "./auth-reducer";
-import { AppThunkDispatch } from "./redux-store";
+import {GetAuthTC, SetUserDataType} from "../reducers/auth-reducer";
+import { AppThunkDispatch } from "../redux-store";
 
 
 export type AppType = {

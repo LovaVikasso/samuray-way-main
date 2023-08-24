@@ -1,7 +1,7 @@
-import {AddPost} from "./profile-reducer";
+import {AddPost} from "./reducers/profile-reducer";
 import {AddMessageAC,
     // UpdateNewMessageAC
-} from "./dialogs-reducer";
+} from "./reducers/dialogs-reducer";
 
 type PostType = {
     id: number,

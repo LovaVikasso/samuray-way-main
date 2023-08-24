@@ -1,6 +1,5 @@
-//types
-import {userAPI} from "../api/api";
 import {Dispatch} from "redux";
+import { userAPI } from "../../api/api";
 
 export type UserType = {
     id: number,
@@ -40,7 +39,7 @@ export type ThunkDispatch = Dispatch<UsersReducerType>
 
 const initialState: UsersPageType = {
     users: [],
-    pageSize: 20,
+    pageSize: 40,
     totalUsersCount: 25,
     currentPage: 1,
     isFetching: false,

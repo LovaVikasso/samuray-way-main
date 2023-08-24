@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import Header from "./Header";
-import {AuthMeType,  LogoutTC} from "../../redux/auth-reducer";
+import {AuthMeType,  LogoutTC} from "../../redux/reducers/auth-reducer";
 
 type HeaderPageType = { data: AuthMeType }
 type MapStatePropsType = HeaderPageType

@@ -1,6 +1,6 @@
 import {AnyAction, Dispatch, } from "redux";
-import {AppThunkDispatch} from "./redux-store";
-import {authAPI } from "../api/api";
+import {AppThunkDispatch} from "../redux-store";
+import {authAPI } from "../../api/api";
 
 export type AuthMeType = {
     id: number | null

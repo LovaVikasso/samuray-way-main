@@ -1,6 +1,6 @@
 import React from "react";
 import s from './Post.module.css'
-import {PostType} from "../../../../redux/profile-reducer";
+import {PostType} from "../../../../redux/reducers/profile-reducer";
 
 
 const Post: React.FC<PostType> = (props) => { //приходят пропсы типа посттайп

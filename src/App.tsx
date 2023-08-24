@@ -12,7 +12,7 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import {AppStateType} from './redux/redux-store';
 import {connect} from 'react-redux';
-import {InitializeTC} from './redux/app-reducer';
+import {InitializeTC} from './redux/reducers/app-reducer';
 import {Preloader} from './components/common/Preloader';
 
 

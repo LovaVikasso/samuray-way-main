@@ -5,12 +5,12 @@ import {
     ToddleFollowingInProgress,
     UnFollow,
     UsersPageType
-} from "../../redux/users-reducer";
+} from "../../redux/reducers/users-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader";
 import {compose} from "redux";
-import {withAuthRedirect} from "../../hoc/RedirectComponent";
+
 
 
 type MapStatePropsType = UsersPageType

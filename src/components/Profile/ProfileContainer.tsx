@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import s from './Profile.module.css'
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {ProfileUserType, SetUserProfileTC, SetUserStatusTC, UpdateStatusTC} from "../../redux/profile-reducer";
+import {ProfileUserType, SetUserProfileTC, SetUserStatusTC, UpdateStatusTC} from "../../redux/reducers/profile-reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
