@@ -1,0 +1,14 @@
+.avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    margin: 10px;
+}
+
+.follow {
+    margin: 0 0 0 10px;
+}
+
+.name {
+    margin: 10px 0 0 10px;
+}
