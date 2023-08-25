@@ -104,37 +104,44 @@ export const ToddleFollowingInProgress = (inProgress: boolean, userId: number) =
     inProgress,
     userId
 } as const)
-export const GetUsersTC = (currentPage: number, pageSize: number) => (dispatch: ThunkDispatch) => {
+export const GetUsersTC = (currentPage: number, pageSize: number) => async (dispatch: ThunkDispatch) => {
     dispatch(ToddleIsFetching(true))
-    userAPI.getUsers(currentPage, pageSize)
-        .then(response => {
-            dispatch(SetUsers(response.items))
-            dispatch(SetTotalCount(response.totalCount))
-            dispatch(SetCurrentPage(currentPage))
-            dispatch(ToddleIsFetching(false))
-        })
+    const response = await userAPI.getUsers(currentPage, pageSize);
+    dispatch(SetUsers(response.items));
+    dispatch(SetTotalCount(response.totalCount));
+    dispatch(SetCurrentPage(currentPage));
+    dispatch(ToddleIsFetching(false));
 }
 
 export const FollowTC = (userId: number) => {
-    return (dispatch: ThunkDispatch) => {
+    return async (dispatch: ThunkDispatch) => {
+        const apiMethod = userAPI.followUser.bind(userAPI)
+        const actionCreator = Follow
         dispatch(ToddleFollowingInProgress(true, userId))
-        userAPI.followUser(userId)
-            .then(response => {
-                if (response.resultCode === 0) {
-                    dispatch(Follow(userId))
-                }
-                dispatch(ToddleFollowingInProgress(false, userId))
-            })
+        const response = await apiMethod(userId);
+        if (response.resultCode === 0) {
+            dispatch(actionCreator(userId));
+        }
+        dispatch(ToddleFollowingInProgress(false, userId));
     }
 }
 
-export const UnFollowUserTC = (userId: number) => (dispatch: Dispatch<UsersReducerType>) => {
+export const UnFollowTC = (userId: number) => async (dispatch: Dispatch<UsersReducerType>) => {
+    const apiMethod = userAPI.unfollowUser.bind(userAPI)
+    const actionCreator = UnFollow
     dispatch(ToddleFollowingInProgress(true, userId))
-    userAPI.unfollowUser(userId)
-        .then(response => {
-            if (response.resultCode === 0) {
-                dispatch(UnFollow(userId))
-            }
-            dispatch(ToddleFollowingInProgress(false, userId))
-        })
+    const response = await apiMethod(userId);
+    if (response.resultCode === 0) {
+        dispatch(actionCreator(userId));
+    }
+    dispatch(ToddleFollowingInProgress(false, userId));
 }
+
+// const followUnfollowToddle = async (dispatch: Dispatch<UsersReducerType>, userId:number, apiMethod: Function, actionCreator: Function) => {
+//     dispatch(ToddleFollowingInProgress(true, userId))
+//     const response = await apiMethod(userId);
+//     if (response.resultCode === 0) {
+//         dispatch(actionCreator(userId));
+//     }
+//     dispatch(ToddleFollowingInProgress(false, userId));
+// }
