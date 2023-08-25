@@ -2,7 +2,6 @@ import React, {ComponentType} from 'react';
 import {connect} from "react-redux";
 import {
     FollowTC, GetUsersTC,
-    ToddleFollowingInProgress,
     UnFollowTC,
     UsersPageType
 } from "../../redux/reducers/users-reducer";
