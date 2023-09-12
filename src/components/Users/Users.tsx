@@ -1,8 +1,6 @@
 import React from 'react';
 import s from "./Users.module.css";
-import userWithOutAvatar from "../../assets/images/userWithOutAvatar.png";
 import {UserType} from "../../redux/reducers/users-reducer";
-import {NavLink} from "react-router-dom";
 import {Paginator} from '../Paginator/Paginator';
 import {User} from './User';
 
