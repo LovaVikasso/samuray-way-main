@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import { userAPI } from "../../api/userAPI";
+import {userAPI} from "../../api/userAPI";
 
 export type UserType = {
     id: number,
@@ -25,6 +25,7 @@ type SetCurrentPageACType = ReturnType<typeof SetCurrentPage>
 type SetTotalCountACType = ReturnType<typeof SetTotalCount>
 type ToddleIsFetchingACType = ReturnType<typeof ToddleIsFetching>
 type ToddleFollowingInProgressACType = ReturnType<typeof ToddleFollowingInProgress>
+type ChangePageSizeACType = ReturnType<typeof ChangePageSize>
 
 type UsersReducerType =
     | FollowActionType
@@ -34,6 +35,7 @@ type UsersReducerType =
     | SetTotalCountACType
     | ToddleIsFetchingACType
     | ToddleFollowingInProgressACType
+    | ChangePageSizeACType
 
 export type ThunkDispatch = Dispatch<UsersReducerType>
 
@@ -89,10 +91,17 @@ export const usersReducer = (state: UsersPageType = initialState, action: UsersR
         case "TODDLE-IS-FETCHING": {
             return {...state, isFetching: action.isFetching}
         }
+        case "CHANGE-PAGE-SIZE": {
+            return {
+            ...state, pageSize: action.pageSize
+            }
+        }
         default:
             return state
     }
 }
+
+export const ChangePageSize = (pageSize: number) => ({type: 'CHANGE-PAGE-SIZE', pageSize} as const)
 export const Follow = (id: number) => ({type: 'FOLLOW', id} as const)
 export const UnFollow = (id: number) => ({type: 'UNFOLLOW', id} as const)
 export const SetUsers = (users: UserType[]) => ({type: 'SET-USERS', users} as const)
