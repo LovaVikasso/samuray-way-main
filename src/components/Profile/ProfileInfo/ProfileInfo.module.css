@@ -12,3 +12,6 @@
     height: 80px;
     border-radius: 50px;
 }
+.customFileUpload input[type="file"] {
+    display: none; /* Скрываем стандартный input для файла */
+}

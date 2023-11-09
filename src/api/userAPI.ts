@@ -26,5 +26,21 @@ export const userAPI = {
         const response = await instance.put(`profile/status/`, {status: status});
         return response.data;
     },
+    async uploadPhoto(photo: File) {
+        try {
+            const formData = new FormData();
+            formData.append('image', photo);
+
+            const response = await instance.put(`profile/photo`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form/data'
+                }
+            });
+
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+    }
 
 }

@@ -13,6 +13,10 @@ export type ProfilePageType = {
     posts: Array<PostType>
     status: string
 }
+export type PhotosType = {
+    small: string | null
+    large: string | null
+}
 export type ProfileUserType = {
     aboutMe: string | null | undefined,
     contacts: {
@@ -29,10 +33,7 @@ export type ProfileUserType = {
     lookingForAJobDescription: string | null | undefined
     fullName: string
     userId: number
-    photos: {
-        small: string | undefined
-        large: string | undefined
-    }
+    photos: PhotosType
 }
 const initialState: ProfilePageType = {
     profile: {
@@ -67,8 +68,9 @@ const initialState: ProfilePageType = {
 type AddPostACType = ReturnType<typeof AddPost>
 type SetUserProfileACType = ReturnType<typeof SetUserProfile>
 type SetUserStatusACType = ReturnType<typeof SetUserStatus>
+type SetSavePhotoACType = ReturnType<typeof SavePhoto>
 
-type ProfileReducerType = AddPostACType | SetUserProfileACType | SetUserStatusACType
+type ProfileReducerType = AddPostACType | SetUserProfileACType | SetUserStatusACType | SetSavePhotoACType
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ProfileReducerType): ProfilePageType => {
     switch (action.type) {
@@ -87,6 +89,9 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
         case 'SET-USER-STATUS': {
             return {...state, status: action.status}
         }
+        case 'SAVE-PHOTO': {
+            return {...state, profile: {...state.profile, photos: action.photos  }}
+        }
 
         default:
             return state
@@ -97,6 +102,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
 export const AddPost = (text:string) => ({type: 'ADD-POST', text} as const)
 export const SetUserProfile = (profile: ProfileUserType) => ({type: 'SET-USER-PROFILE', profile} as const)
 export const SetUserStatus = (status: string) => ({type: 'SET-USER-STATUS', status} as const)
+export const SavePhoto = (photos: PhotosType) => ({type: 'SAVE-PHOTO', photos} as const)
 
 //thunk creators
 export const SetUserProfileTC = (userId: string | number) => (dispatch: Dispatch<ProfileReducerType>) => {
@@ -119,6 +125,14 @@ export const UpdateStatusTC = (status: string) => (dispatch: Dispatch<ProfileRed
         .then(response => {
             if (response.resultCode === 0 ) {
                 dispatch(SetUserStatus(status))
+            }
+        })
+}
+export const UploadPhotoTC = (file: File ) => (dispatch: Dispatch<ProfileReducerType>) => {
+    userAPI.uploadPhoto(file)
+        .then(response => {
+            if (response.resultCode === 0 ) {
+                dispatch(SavePhoto(response.data.photos))
             }
         })
 }
