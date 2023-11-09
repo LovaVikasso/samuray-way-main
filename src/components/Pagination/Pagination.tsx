@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import s from './Paginator.module.css'
+import s from './Pagination.module.css'
 
 type PaginatorPropsType = {
     totalItemsCount: number, //при первой инициализации приложения сколько всего items, потом с сервера
@@ -9,7 +9,7 @@ type PaginatorPropsType = {
     portionSize?: number
 
 }
-export const Paginator: React.FC<PaginatorPropsType> = ({totalItemsCount, currentPage, pageSize, onChangePage, portionSize = 10}) => {
+export const Pagination: React.FC<PaginatorPropsType> = ({totalItemsCount, currentPage, pageSize, onChangePage, portionSize = 10}) => {
 
     let pagesCount = Math.ceil(totalItemsCount / pageSize)
     let pages = []

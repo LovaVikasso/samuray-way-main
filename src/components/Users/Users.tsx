@@ -3,7 +3,7 @@ import s from "./Users.module.css";
 import userWithOutAvatar from "../../assets/images/userWithOutAvatar.png";
 import {UserType} from "../../redux/reducers/users-reducer";
 import {NavLink} from "react-router-dom";
-import {Paginator} from '../Paginator/Paginator';
+import {Pagination} from '../Pagination/Pagination';
 import {User} from './User';
 
 type PropsType = {
@@ -28,7 +28,7 @@ export const Users: React.FC<PropsType> = ({
 
     return <div>
 
-        <Paginator totalItemsCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage}
+        <Pagination totalItemsCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage}
                    onChangePage={onChangePage}/>
         <div className={s.users}>
             {users.map((user) => <User key={user.id} user={user} FollowTC={FollowTC} UnFollowTC={UnFollowTC}
